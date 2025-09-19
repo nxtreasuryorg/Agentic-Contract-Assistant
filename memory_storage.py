@@ -14,7 +14,6 @@ from datetime import datetime, timedelta
 import json
 import logging
 from threading import Lock
-import schedule
 from crew_manager import CrewProcessingResult
 
 
