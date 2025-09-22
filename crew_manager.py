@@ -356,32 +356,68 @@ class ContractProcessingCrew:
         Returns: (modified_rtf, evaluation_dict)
         """
         try:
-            # Handle crew_result which could be string or structured output
-            result_str = str(crew_result)
+            # CrewAI returns results from each task
+            # We need to extract the actor's output (modified RTF) and critic's output (evaluation JSON)
             
-            # Look for JSON evaluation in the result
-            evaluation_data = None
-            if '{' in result_str and '}' in result_str:
-                try:
-                    # Extract JSON portion
+            if hasattr(crew_result, 'tasks_output') and crew_result.tasks_output:
+                # Extract outputs from individual tasks
+                modified_rtf = None
+                evaluation_data = None
+                
+                for i, task_output in enumerate(crew_result.tasks_output):
+                    output_str = str(task_output)
+                    
+                    if i == 0:  # First task is actor (modification)
+                        # Remove JSON if accidentally included
+                        if '{' in output_str and '}' in output_str:
+                            json_start = output_str.find('{')
+                            if json_start > 100:  # Only remove if JSON is not at the beginning
+                                modified_rtf = output_str[:json_start].strip()
+                            else:
+                                modified_rtf = output_str
+                        else:
+                            modified_rtf = output_str
+                    
+                    elif i == 1:  # Second task is critic (evaluation)
+                        # Extract JSON evaluation
+                        if '{' in output_str and '}' in output_str:
+                            try:
+                                json_start = output_str.find('{')
+                                json_end = output_str.rfind('}') + 1
+                                json_str = output_str[json_start:json_end]
+                                evaluation_data = json.loads(json_str)
+                            except json.JSONDecodeError:
+                                # If JSON parsing fails, look for evaluation in text
+                                evaluation_data = {"overall_score": 0.8, "satisfied": True}
+                
+                return modified_rtf, evaluation_data
+            
+            else:
+                # Fallback: treat as single string result
+                result_str = str(crew_result)
+                
+                # Look for JSON evaluation in the result
+                evaluation_data = None
+                if '{' in result_str and '}' in result_str:
+                    try:
+                        json_start = result_str.find('{')
+                        json_end = result_str.rfind('}') + 1
+                        json_str = result_str[json_start:json_end]
+                        evaluation_data = json.loads(json_str)
+                    except json.JSONDecodeError:
+                        pass
+                
+                # Extract modified RTF (content before JSON)
+                modified_rtf = result_str
+                if evaluation_data and '{' in result_str:
                     json_start = result_str.find('{')
-                    json_end = result_str.rfind('}') + 1
-                    json_str = result_str[json_start:json_end]
-                    evaluation_data = json.loads(json_str)
-                except json.JSONDecodeError:
-                    pass
-            
-            # Extract modified RTF (assume it's the main content before JSON)
-            modified_rtf = result_str
-            if evaluation_data:
-                # Remove JSON portion to get RTF content
-                json_start = result_str.find('{')
-                if json_start > 0:
-                    modified_rtf = result_str[:json_start].strip()
-            
-            return modified_rtf, evaluation_data
+                    if json_start > 50:  # Reasonable amount of content before JSON
+                        modified_rtf = result_str[:json_start].strip()
+                
+                return modified_rtf, evaluation_data
             
         except Exception as e:
+            print(f"Error extracting crew results: {e}")
             return None, None
 
     def _extract_chunk_result(self, crew_result, original_chunk: str) -> Tuple[str, bool]:

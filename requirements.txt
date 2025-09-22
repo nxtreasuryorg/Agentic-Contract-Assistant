@@ -28,3 +28,6 @@ langchain-text-splitters>=0.0.1
 # API server
 Flask>=3.0
 gunicorn>=21.2
+
+# PDF processing
+PyMuPDF>=1.23.0

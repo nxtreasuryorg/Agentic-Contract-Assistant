@@ -305,6 +305,40 @@ class MemoryStorage:
         self._cleanup_running = False
         self.logger.info("Stopped cleanup scheduler")
     
+    def get_job_statistics(self) -> Dict[str, Any]:
+        """
+        Get job statistics for monitoring and debugging.
+        
+        Returns:
+            Dictionary with job statistics
+        """
+        with self._lock:
+            total_jobs = len(self.storage)
+            
+            # Count jobs by status
+            status_counts = {}
+            for job_data in self.storage.values():
+                status = job_data.status
+                status_counts[status] = status_counts.get(status, 0) + 1
+            
+            # Calculate average processing time for completed jobs
+            completed_jobs = [job for job in self.storage.values() if job.status == "completed" and job.result]
+            avg_processing_time = 0.0
+            if completed_jobs:
+                total_time = sum(job.result.total_processing_time for job in completed_jobs)
+                avg_processing_time = total_time / len(completed_jobs)
+            
+            return {
+                "total_jobs": total_jobs,
+                "status_counts": status_counts,
+                "completed_jobs": len(completed_jobs),
+                "average_processing_time": avg_processing_time,
+                "memory_usage_mb": sum(
+                    len(job.file_data) if job.file_data else 0 
+                    for job in self.storage.values()
+                ) / (1024 * 1024)
+            }
+    
     def __del__(self):
         """Ensure cleanup scheduler is stopped on object destruction"""
         self.stop_cleanup_scheduler()
