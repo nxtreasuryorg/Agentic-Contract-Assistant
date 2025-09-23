@@ -1,0 +1,52 @@
+# Virtual environments
+virt/
+venv/
+env/
+.venv/
+__pycache__/
+
+# Python cache and compiled files
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Test files and data
+tests/
+test_data/
+examples/
+
+# Development files
+.env
+app.py
+flask_server.py
+
+# Generated and temporary files
+uploaded_docs/
+generated_rtf/
+tmp/
+*.log
+
+# Documentation and spec files
+doc/
+spec/
+README.md
+
+# Development utilities
+__pycache__/
+.pytest_cache/
