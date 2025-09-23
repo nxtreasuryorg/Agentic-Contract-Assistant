@@ -6,6 +6,8 @@ tmp
 .env
 # C extensions
 *.so
+generated_rtf
+uploaded_docs
 
 # Distribution / packaging
 .Python

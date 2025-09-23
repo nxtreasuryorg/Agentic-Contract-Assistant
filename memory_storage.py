@@ -38,17 +38,19 @@ class MemoryStorage:
     Thread-safe implementation for concurrent job processing.
     """
     
-    def __init__(self, max_age_hours: int = 24, cleanup_interval_minutes: int = 60):
+    def __init__(self, max_age_hours: int = 24, cleanup_interval_minutes: int = 60, session_based_cleanup: bool = True):
         """
         Initialize memory storage with cleanup configuration.
         
         Args:
             max_age_hours: Maximum age for jobs before cleanup (default: 24 hours)
             cleanup_interval_minutes: Cleanup check interval (default: 60 minutes)
+            session_based_cleanup: If True, cleanup immediately after job completion (default: True)
         """
         self.storage: Dict[str, JobData] = {}
         self.max_age_hours = max_age_hours
         self.cleanup_interval_minutes = cleanup_interval_minutes
+        self.session_based_cleanup = session_based_cleanup
         self._lock = Lock()
         self._cleanup_running = False
         
@@ -56,8 +58,11 @@ class MemoryStorage:
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
         
-        # Start cleanup scheduler
-        self._start_cleanup_scheduler()
+        # Start cleanup scheduler only if not using session-based cleanup
+        if not self.session_based_cleanup:
+            self._start_cleanup_scheduler()
+        else:
+            self.logger.info("Session-based cleanup enabled - automatic cleanup disabled")
     
     def create_job(self, 
                    file_data: bytes, 
@@ -168,6 +173,11 @@ class MemoryStorage:
                 job_data.error_message = result.error_message
             
             self.logger.info(f"Stored result for job {job_id}: success={result.success}")
+            
+            # Schedule immediate cleanup if session-based cleanup is enabled
+            if self.session_based_cleanup:
+                self.logger.info(f"Session-based cleanup will be triggered for job {job_id}")
+            
             return True
     
     def get_job_status(self, job_id: str) -> Optional[Dict[str, Any]]:
@@ -208,22 +218,81 @@ class MemoryStorage:
         
         return status_info
     
-    def cleanup_job(self, job_id: str) -> bool:
+    def cleanup_job(self, job_id: str, cleanup_files: bool = True) -> bool:
         """
-        Remove job and all associated data.
+        Remove job and all associated data including generated files.
         
         Args:
             job_id: Job identifier
+            cleanup_files: If True, also cleanup associated files from disk
             
         Returns:
             True if cleanup successful, False if job not found
         """
+        import os
+        import glob
+        
         with self._lock:
-            if job_id in self.storage:
-                job_data = self.storage.pop(job_id)
-                self.logger.info(f"Cleaned up job {job_id} ({job_data.filename})")
-                return True
-            return False
+            if job_id not in self.storage:
+                return False
+                
+            job_data = self.storage.pop(job_id)
+            
+            # Clean up associated files if requested
+            if cleanup_files:
+                self._cleanup_job_files(job_id, job_data.filename)
+            
+            self.logger.info(f"Cleaned up job {job_id} ({job_data.filename}) - files cleaned: {cleanup_files}")
+            return True
+    
+    def _cleanup_job_files(self, job_id: str, original_filename: str):
+        """
+        Clean up files associated with a job from disk.
+        
+        Args:
+            job_id: Job identifier
+            original_filename: Original filename for pattern matching
+        """
+        import os
+        import glob
+        
+        # Get script directory and define paths
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        upload_folder = os.path.join(script_dir, "uploaded_docs")
+        rtf_folder = os.path.join(script_dir, "generated_rtf")
+        
+        cleaned_files = []
+        
+        try:
+            # Clean up uploaded files with job_id prefix
+            upload_pattern = os.path.join(upload_folder, f"{job_id}_*")
+            for file_path in glob.glob(upload_pattern):
+                try:
+                    os.remove(file_path)
+                    cleaned_files.append(file_path)
+                except Exception as e:
+                    self.logger.warning(f"Failed to remove uploaded file {file_path}: {e}")
+            
+            # Clean up generated RTF/PDF files that might contain job_id or timestamp
+            base_filename = os.path.splitext(original_filename)[0]
+            rtf_patterns = [
+                os.path.join(rtf_folder, f"{base_filename}_*"),
+                os.path.join(rtf_folder, f"*{job_id[:8]}*")  # Match short job ID
+            ]
+            
+            for pattern in rtf_patterns:
+                for file_path in glob.glob(pattern):
+                    try:
+                        os.remove(file_path)
+                        cleaned_files.append(file_path)
+                    except Exception as e:
+                        self.logger.warning(f"Failed to remove generated file {file_path}: {e}")
+            
+            if cleaned_files:
+                self.logger.info(f"Cleaned up {len(cleaned_files)} files for job {job_id}")
+                
+        except Exception as e:
+            self.logger.error(f"Error during file cleanup for job {job_id}: {e}")
     
     def auto_cleanup(self) -> int:
         """
@@ -338,6 +407,33 @@ class MemoryStorage:
                     for job in self.storage.values()
                 ) / (1024 * 1024)
             }
+    
+    def cleanup_completed_job_after_retrieval(self, job_id: str) -> bool:
+        """
+        Clean up a completed job after its results have been retrieved.
+        Used for session-based cleanup to free memory and files immediately.
+        
+        Args:
+            job_id: Job identifier
+            
+        Returns:
+            True if cleanup successful, False otherwise
+        """
+        job_data = self.get_job(job_id)
+        if not job_data:
+            return False
+            
+        # Only cleanup completed or failed jobs
+        if job_data.status not in ["completed", "failed"]:
+            return False
+            
+        # Perform cleanup with file deletion
+        success = self.cleanup_job(job_id, cleanup_files=True)
+        
+        if success and self.session_based_cleanup:
+            self.logger.info(f"Session-based cleanup completed for job {job_id}")
+            
+        return success
     
     def __del__(self):
         """Ensure cleanup scheduler is stopped on object destruction"""

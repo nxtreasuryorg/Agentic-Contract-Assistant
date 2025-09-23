@@ -345,7 +345,7 @@ def get_job_result(job_id):
         
         result = job_data.result
         
-        return jsonify({
+        response_data = {
             "job_id": job_id,
             "status": "completed",
             "filename": job_data.filename,
@@ -363,7 +363,15 @@ def get_job_result(job_id):
             "created_at": job_data.created_at.isoformat(),
             "updated_at": job_data.updated_at.isoformat(),
             "success": True
-        }), 200
+        }
+        
+        # Trigger session-based cleanup after result retrieval
+        if hasattr(memory_storage, 'session_based_cleanup') and memory_storage.session_based_cleanup:
+            cleanup_success = memory_storage.cleanup_completed_job_after_retrieval(job_id)
+            if cleanup_success:
+                print(f"🧹 Session cleanup completed for job {job_id}")
+        
+        return jsonify(response_data), 200
         
     except Exception as e:
         print(f"Error getting job result for {job_id}: {e}")
