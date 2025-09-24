@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 import json
 import logging
 from threading import Lock
-from crew_manager import CrewProcessingResult
+from core.types import CrewProcessingResult
 
 
 @dataclass
@@ -38,13 +38,13 @@ class MemoryStorage:
     Thread-safe implementation for concurrent job processing.
     """
     
-    def __init__(self, max_age_hours: int = 24, cleanup_interval_minutes: int = 60, session_based_cleanup: bool = True):
+    def __init__(self, max_age_hours: int = 48, cleanup_interval_minutes: int = 90, session_based_cleanup: bool = True):
         """
         Initialize memory storage with cleanup configuration.
         
         Args:
-            max_age_hours: Maximum age for jobs before cleanup (default: 24 hours)
-            cleanup_interval_minutes: Cleanup check interval (default: 60 minutes)
+            max_age_hours: Maximum age for jobs before cleanup (default: 48 hours for large contracts)
+            cleanup_interval_minutes: Cleanup check interval (default: 90 minutes)
             session_based_cleanup: If True, cleanup immediately after job completion (default: True)
         """
         self.storage: Dict[str, JobData] = {}

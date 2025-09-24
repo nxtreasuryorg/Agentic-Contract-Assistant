@@ -18,19 +18,21 @@ from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 
 # Import Contract-Agent modules
-from crew_manager import ContractProcessingCrew, CrewProcessingResult
-from memory_storage import MemoryStorage
-from bedrock_client import BedrockModelManager
-import pdf_utils
+from core.crew.crew_manager import ContractProcessingCrew
+from core.types import CrewProcessingResult
+from infrastructure.storage.memory_storage import MemoryStorage
+from infrastructure.aws.bedrock_client import BedrockModelManager
+from core.document_processing import pdf_utils
 
 # Load environment variables
 load_dotenv()
 
-# Configure Flask with increased max content length (100MB)
+# Configure Flask with increased max content length and timeouts for large contracts
 # Use 'application' name for EB compatibility
 application = Flask(__name__)
-application.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024  # 100MB
+application.config['MAX_CONTENT_LENGTH'] = 200 * 1024 * 1024  # 200MB for large contracts
 application.config['JSON_AS_ASCII'] = False  # Properly handle Unicode
+application.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0  # Disable caching for large files
 
 # Initialize Contract-Agent components
 print("🚀 Initializing Contract-Agent API Server...")
@@ -40,8 +42,8 @@ bedrock_manager = BedrockModelManager()
 
 # Initialize paths
 script_dir = os.path.dirname(os.path.abspath(__file__))
-UPLOAD_FOLDER = os.path.join(script_dir, "uploaded_docs")
-RTF_OUTPUT_FOLDER = os.path.join(script_dir, "generated_rtf")
+UPLOAD_FOLDER = os.path.join(script_dir, "data", "uploads")
+RTF_OUTPUT_FOLDER = os.path.join(script_dir, "data", "generated")
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(RTF_OUTPUT_FOLDER, exist_ok=True)
 
@@ -65,8 +67,8 @@ def start_processing_thread():
         
         while True:
             try:
-                # Get job from queue (blocking)
-                job_id, user_prompt, file_path, original_filename = job_queue.get(timeout=30)
+                # Get job from queue (blocking) - increased timeout for large contract processing
+                job_id, user_prompt, file_path, original_filename = job_queue.get(timeout=120)
                 
                 print(f"📋 Processing job {job_id}: {original_filename}")
                 
@@ -458,7 +460,7 @@ def test_crewai():
 @application.errorhandler(413)
 def request_entity_too_large(error):
     return jsonify({
-        "error": "File too large. Maximum size is 100MB.",
+        "error": "File too large. Maximum size is 200MB.",
         "success": False
     }), 413
 

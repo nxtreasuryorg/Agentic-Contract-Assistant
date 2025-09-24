@@ -11,27 +11,15 @@ from dataclasses import dataclass
 import json
 import time
 import uuid
-from src.tasks import ContractTasks
-from src.agents import ContractAgents
-from document_chunking import DocumentChunkingManager
-from bedrock_client import BedrockModelManager
-from system_prompts import SystemPrompts
+from core.agents.tasks import ContractTasks
+from core.agents.agents import ContractAgents
+from core.document_processing.document_chunking import DocumentChunkingManager
+from infrastructure.aws.bedrock_client import BedrockModelManager
+from core.prompts.system_prompts import SystemPrompts
+from core.types import CrewProcessingResult
 import concurrent.futures
 
 
-@dataclass
-class CrewProcessingResult:
-    """Result from CrewAI contract processing workflow"""
-    success: bool
-    job_id: str
-    final_rtf: Optional[str]
-    original_rtf: str
-    iterations_used: int
-    total_processing_time: float
-    final_score: Optional[float]
-    crew_output: str
-    error_message: Optional[str]
-    chunk_processing_stats: Optional[Dict] = None
 
 
 class ContractProcessingCrew:
@@ -305,6 +293,7 @@ class ContractProcessingCrew:
         """
         processed_chunks = []
         max_workers = 5  # Rate limiting for Bedrock API
+        chunk_timeout = 1800  # 30 minutes timeout per chunk for large contracts
         
         # Prepare chunk contexts
         chunk_contexts = []
@@ -334,13 +323,17 @@ class ContractProcessingCrew:
             
             # Collect results maintaining order
             results = {}
-            for future in concurrent.futures.as_completed(future_to_chunk):
+            for future in concurrent.futures.as_completed(future_to_chunk, timeout=chunk_timeout):
                 chunk_index, original_chunk = future_to_chunk[future]
                 try:
-                    crew_result = future.result()
+                    crew_result = future.result(timeout=chunk_timeout)
                     processed_content = self._extract_chunk_result(crew_result, original_chunk)
                     results[chunk_index] = processed_content
+                except concurrent.futures.TimeoutError:
+                    print(f"⚠️ Chunk {chunk_index} processing timed out after {chunk_timeout}s - using original")
+                    results[chunk_index] = (original_chunk, False)
                 except Exception as e:
+                    print(f"⚠️ Chunk {chunk_index} processing failed: {e} - using original")
                     # If chunk processing fails, use original chunk
                     results[chunk_index] = (original_chunk, False)
             

@@ -28,25 +28,27 @@ Thumbs.db
 
 # Test files and data
 tests/
-test_data/
-examples/
+data/test_data/
 
 # Development files
 .env
 app.py
-flask_server.py
 
 # Generated and temporary files
-uploaded_docs/
-generated_rtf/
-tmp/
+data/uploads/
+data/generated/
+data/temp/
 *.log
 
 # Documentation and spec files
-doc/
-spec/
+docs/
 README.md
 
+# Example files
+scripts/examples/
+
 # Development utilities
-__pycache__/
 .pytest_cache/
+
+# EB specific
+.elasticbeanstalk/versions/

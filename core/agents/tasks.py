@@ -7,7 +7,7 @@ Based on Agent-3.0 code style with contract-specific requirements.
 
 from crewai import Task
 from .agents import ContractAgents
-from system_prompts import SystemPrompts
+from core.prompts.system_prompts import SystemPrompts
 import json
 
 

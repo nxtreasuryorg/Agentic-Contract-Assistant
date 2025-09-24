@@ -8,7 +8,7 @@ Based on Agent-3.0 code style with legacy-derived system prompts.
 from crewai import Agent, LLM
 import os
 from dotenv import load_dotenv, find_dotenv
-from bedrock_client import BedrockModelManager
+from infrastructure.aws.bedrock_client import BedrockModelManager
 
 
 class ContractAgents:

@@ -76,6 +76,9 @@ class BedrockModelManager:
         }
     }
     
+    # Request timeout configurations for large contracts
+    REQUEST_TIMEOUT_SECONDS = 180  # 3 minutes for large document processing
+    
     def __init__(self, 
                  region_name: Optional[str] = None,
                  max_concurrent_requests: Optional[int] = None,
@@ -93,17 +96,26 @@ class BedrockModelManager:
         # Load configuration from environment variables with defaults
         self.region_name = region_name or os.getenv('AWS_REGION_NAME', 'us-east-1')
         self.max_concurrent_requests = max_concurrent_requests or int(os.getenv('MAX_CONCURRENT_REQUESTS', '5'))
-        self.max_retries = max_retries or int(os.getenv('MAX_RETRIES', '3'))
-        self.base_delay = base_delay or float(os.getenv('BASE_DELAY', '1.0'))
+        self.max_retries = max_retries or int(os.getenv('MAX_RETRIES', '5'))  # Increased for large contracts
+        self.base_delay = base_delay or float(os.getenv('BASE_DELAY', '2.0'))  # Increased base delay
         
         # Initialize Bedrock client with credentials from environment
         try:
             # AWS credentials will be loaded from environment variables
+            # Configure with increased timeout for large contracts
+            import botocore.config
+            config = botocore.config.Config(
+                read_timeout=self.REQUEST_TIMEOUT_SECONDS,
+                connect_timeout=30,
+                retries={'max_attempts': self.max_retries}
+            )
+            
             self.bedrock_client = boto3.client(
                 'bedrock-runtime',
                 region_name=self.region_name,
                 aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
-                aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
+                aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY'),
+                config=config
             )
         except Exception as e:
             logging.error(f"Failed to initialize Bedrock client: {e}")

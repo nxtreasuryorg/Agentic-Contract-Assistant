@@ -10,7 +10,7 @@ import os
 from typing import Dict, Any, Optional, List
 from dataclasses import dataclass
 
-from system_prompts import SystemPrompts
+from core.prompts.system_prompts import SystemPrompts
 
 
 @dataclass
