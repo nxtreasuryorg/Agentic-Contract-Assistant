@@ -1,0 +1,23 @@
+sequenceDiagram
+  participant API as API_Server
+  participant Crew as ContractProcessingCrew
+  participant DCM as DocumentChunkingManager
+  participant Worker as ParallelWorkers
+  participant Critic as Critic_Agent
+
+  API->>Crew: process_contract()
+  Crew->>DCM: should_chunk_document()
+  alt needs chunking
+    Crew->>DCM: split_document()
+    Crew->>DCM: find_instruction_targets()
+    par up to 5 workers
+      Crew->>Worker: chunk_processing_task()
+      Worker-->>Crew: processed_chunk
+    end
+    Crew->>DCM: reassemble_chunks()
+    Crew->>Critic: contract_evaluation_task()
+    Critic-->>Crew: evaluation JSON
+    Crew-->>API: CrewProcessingResult
+  else no chunking
+    Crew->>Crew: fallback to single document
+  end

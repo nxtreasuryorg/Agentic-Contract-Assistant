@@ -1,0 +1,24 @@
+flowchart LR
+    Start[🚀 API Request] --> Init[⚙️ Initialize]
+    Init --> Loop{🔄 Start Loop}
+    
+    Loop --> Actor[🎭 Actor<br/>Modify Contract]
+    Actor --> Critic[🔍 Critic<br/>Evaluate Quality]
+    
+    Critic --> Check{✅ Score ≥ 0.85?}
+    Check -->|✅ Yes| Success[🎉 Success<br/>Return Result]
+    Check -->|❌ No| Iterate{🔢 Iteration < 5?}
+    
+    Iterate -->|🔄 Yes| Feedback[💭 Update<br/>with Feedback]
+    Feedback --> Actor
+    
+    Iterate -->|❌ No| Failure[⚠️ Failure<br/>Max Iterations]
+    
+    Success --> Result1[📤 Success Response]
+    Failure --> Result2[📤 Error Response]
+    
+    style Actor fill:#e3f2fd
+    style Critic fill:#f3e5f5
+    style Check fill:#fff3e0
+    style Success fill:#e8f5e8
+    style Failure fill:#ffebee

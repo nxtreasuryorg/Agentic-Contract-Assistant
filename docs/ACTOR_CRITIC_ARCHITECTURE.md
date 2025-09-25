@@ -11,6 +11,18 @@ This document presents the architecture of the Contract-Agent vNext system that 
 - Constraints: Large documents (up to 200MB), strict formatting preservation, deterministic application of multi-step semantic edits, and measurable quality gates.
 - Outcome: A final RTF that meets or exceeds a quality threshold evaluated by a critic agent; otherwise, a failure report with actionable diagnostics.
 
+Key implementation references:
+- API server: `application.py` (production) and `app.py` (development)  
+- Orchestration: `core/crew/crew_manager.py`
+- Agents: `core/agents/agents.py`
+- Tasks: `core/agents/tasks.py`
+- System prompts: `core/prompts/system_prompts.py`
+- Chunking: `core/document_processing/document_chunking.py`
+- Storage: `infrastructure/storage/memory_storage.py`
+- Bedrock integration: `infrastructure/aws/bedrock_client.py`
+- Configuration: `config/prompt_config.json`
+- Shared types: `core/types.py`
+
 
 ## High-Level Architecture
 

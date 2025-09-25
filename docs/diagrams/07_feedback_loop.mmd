@@ -1,0 +1,29 @@
+flowchart TD
+    A[Start Processing] --> B[Load Configuration]
+    B --> C[Initialize Context]
+    C --> D[Actor: Generate Modified RTF]
+    D --> E[Critic: Evaluate Modifications]
+    E --> F{Overall Score >= 0.85?}
+    
+    F -->|Yes| G[Success: Return Result]
+    F -->|No| H{Iteration < Max?}
+    
+    H -->|Yes| I[Update Context with Feedback]
+    I --> J[Increment Attempt Counter]
+    J --> D
+    
+    H -->|No| K[Failure: Return Error Report]
+    
+    subgraph "Evaluation Criteria"
+        L[Entity Substitution 25%]
+        M[Jurisdiction Transform 20%]
+        N[Liability Reallocation 20%]
+        O[Clause Operations 20%]
+        P[Legal Coherence 15%]
+    end
+    
+    E --> L
+    E --> M
+    E --> N
+    E --> O
+    E --> P

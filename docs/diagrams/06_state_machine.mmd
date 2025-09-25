@@ -1,0 +1,14 @@
+stateDiagram-v2
+    [*] --> queued : create_job()
+    queued --> processing : start_processing()
+    processing --> evaluating : actor_complete()
+    evaluating --> processing : refinement_needed()
+    evaluating --> completed : quality_satisfied()
+    processing --> failed : error_occurred()
+    evaluating --> failed : max_iterations_exceeded()
+    completed --> [*] : cleanup()
+    failed --> [*] : cleanup()
+    
+    note right of processing : Actor agent modifying contract
+    note right of evaluating : Critic agent scoring quality
+    note right of completed : Result available for retrieval

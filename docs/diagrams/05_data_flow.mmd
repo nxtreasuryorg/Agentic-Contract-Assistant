@@ -1,0 +1,29 @@
+flowchart TD
+    A[Client Upload] --> B[Flask API /process_contract]
+    B --> C[MemoryStorage.create_job]
+    C --> D[Job Queue]
+    D --> E[Background Processing Thread]
+    E --> F[Extract Text from File]
+    F --> G{Document Size Check}
+    
+    G -->|Small Document| H[ContractProcessingCrew.process_contract]
+    G -->|Large Document| I[DocumentChunkingManager.should_chunk_document]
+    
+    I --> J[DocumentChunkingManager.split_document]
+    J --> K[DocumentChunkingManager.find_instruction_targets]
+    K --> L[DocumentChunkingManager.prioritize_chunks]
+    L --> M[Parallel Chunk Processing]
+    
+    H --> N[Actor-Critic Sequential Loop]
+    M --> O[DocumentChunkingManager.reassemble_chunks]
+    O --> P[Final Critic Evaluation]
+    
+    N --> Q{Quality Threshold Met?}
+    P --> Q
+    Q -->|Yes| R[Success - Store Result]
+    Q -->|No| S[Refinement Iteration]
+    S --> N
+    
+    R --> T[MemoryStorage.store_result]
+    T --> U[Client Polling /job_status]
+    U --> V[Client Retrieval /job_result]

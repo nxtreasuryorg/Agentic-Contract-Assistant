@@ -1,0 +1,70 @@
+classDiagram
+    class Flask_API {
+        +application: Flask
+        +process_contract()
+        +job_status()
+        +job_result()
+        +health()
+        +start_processing_thread()
+        +extract_text_from_file()
+    }
+    
+    class ContractProcessingCrew {
+        -tasks: ContractTasks
+        -agents: ContractAgents
+        -chunking_manager: DocumentChunkingManager
+        -bedrock_manager: BedrockModelManager
+        -system_prompts: SystemPrompts
+        -config: Dict
+        +build_actor_critic_crew()
+        +build_chunk_processing_crew()
+        +process_contract()
+        +_process_single_document()
+        +_process_chunks_parallel()
+    }
+    
+    class ContractAgents {
+        -_actor_model: str
+        -_critic_model: str
+        -_actor_llm: LLM
+        -_critic_llm: LLM
+        +contract_actor(): Agent
+        +contract_critic(): Agent
+    }
+    
+    class DocumentChunkingManager {
+        -chunk_size: int
+        -chunk_overlap: int
+        -text_splitter: RecursiveCharacterTextSplitter
+        +should_chunk_document()
+        +split_document()
+        +find_instruction_targets()
+        +prioritize_chunks()
+        +reassemble_chunks()
+    }
+    
+    class MemoryStorage {
+        -storage: Dict[str, JobData]
+        -max_age_hours: int
+        -_lock: Lock
+        +create_job()
+        +get_job()
+        +update_job_status()
+        +store_result()
+        +cleanup_expired_jobs()
+    }
+    
+    class BedrockModelManager {
+        -region_name: str
+        -max_concurrent_requests: int
+        -bedrock_client: boto3.client
+        +invoke_model()
+        +select_model_for_task()
+        +_retry_with_backoff()
+    }
+
+    Flask_API --> ContractProcessingCrew
+    Flask_API --> MemoryStorage
+    ContractProcessingCrew --> ContractAgents
+    ContractProcessingCrew --> DocumentChunkingManager
+    ContractProcessingCrew --> BedrockModelManager

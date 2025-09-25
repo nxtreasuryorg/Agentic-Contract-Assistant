@@ -1,0 +1,35 @@
+flowchart LR
+  subgraph "Client"
+    U[📤 Upload Contract]
+    P[📊 Poll Status]
+  end
+
+  subgraph "API Layer"
+    A[🌐 Flask API]
+    M[💾 Memory Storage]
+  end
+
+  subgraph "Processing Core"
+    C[⚙️ ContractProcessingCrew]
+    AC[🎭 Actor Agent]
+    CR[🔍 Critic Agent]
+    DCM[📄 Document Chunking]
+  end
+
+  subgraph "AI Models"
+    BR[🤖 Bedrock Manager]
+    T[🧠 Titan Premier]
+    ML[🧠 Mistral Large]
+  end
+
+  U --> A
+  P --> A
+  A --> M
+  A --> C
+  C --> AC
+  C --> CR
+  C --> DCM
+  AC --> BR
+  CR --> BR
+  BR --> T
+  BR --> ML
