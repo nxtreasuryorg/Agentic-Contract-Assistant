@@ -1,0 +1,327 @@
+{
+  "metadata": {
+    "timestamp": "2025-09-26T07:13:46.844345",
+    "evaluator": "Contract-Agent Performance Evaluator v1.0",
+    "total_tests": 10
+  },
+  "results": [
+    {
+      "success": false,
+      "processing_time": 2.0183098316192627,
+      "file": "sample_01.pdf",
+      "prompt": "Change the main party entity name to 'GlobalTech Solutions Inc.' and update all references accordingly",
+      "complexity": "simple",
+      "focus": "counterparty_modification",
+      "job_id": "aa415c05-2a50-4adb-abbd-b37be827c616",
+      "error": "Job failed: Unknown error",
+      "status_changes": [
+        {
+          "status": "processing",
+          "timestamp": 0.010394811630249023,
+          "progress": 30
+        },
+        {
+          "status": "failed",
+          "timestamp": 2.0137600898742676,
+          "progress": 0
+        }
+      ],
+      "test_name": "Simple_PDF_Counterparty_Change",
+      "timestamp": "2025-09-26T07:13:48.865987",
+      "elapsed_time_from_start": 2.021652
+    },
+    {
+      "success": false,
+      "processing_time": 2.01924467086792,
+      "file": "sample_02.pdf",
+      "prompt": "Change the legal domicile and governing law from the current jurisdiction to New York State law, and update all venue clauses to specify Manhattan courts",
+      "complexity": "medium",
+      "focus": "jurisdiction_modification",
+      "job_id": "e0fa45fe-802d-45fd-849c-34a8c7b253e7",
+      "error": "Job failed: Unknown error",
+      "status_changes": [
+        {
+          "status": "processing",
+          "timestamp": 0.011220216751098633,
+          "progress": 30
+        },
+        {
+          "status": "failed",
+          "timestamp": 2.0143632888793945,
+          "progress": 0
+        }
+      ],
+      "test_name": "Medium_Contract_Jurisdiction_Shift",
+      "timestamp": "2025-09-26T07:13:50.885613",
+      "elapsed_time_from_start": 4.041276
+    },
+    {
+      "success": false,
+      "processing_time": 2.047029733657837,
+      "file": "sample_03.pdf",
+      "prompt": "Change the counterparty name to 'AcquisitionCorp LLC', shift governing law to Delaware, and reverse any indemnification clauses so that the acquired party indemnifies the acquiring party instead of the current arrangement",
+      "complexity": "complex",
+      "focus": "multi_parameter",
+      "job_id": "47a7e852-d24e-482d-9466-5ed87d2e99c1",
+      "error": "Job failed: Unknown error",
+      "status_changes": [
+        {
+          "status": "processing",
+          "timestamp": 0.03920459747314453,
+          "progress": 10
+        },
+        {
+          "status": "failed",
+          "timestamp": 2.0422427654266357,
+          "progress": 0
+        }
+      ],
+      "test_name": "Corporate_Acquisition_Multi_Change",
+      "timestamp": "2025-09-26T07:13:52.932873",
+      "elapsed_time_from_start": 6.088535
+    },
+    {
+      "success": false,
+      "processing_time": 2.056206226348877,
+      "file": "sample_04.pdf",
+      "prompt": "Shift all liability and blame attribution from the main service provider to the client - the client should now be responsible for indemnifying the service provider against all claims, damages, and losses",
+      "complexity": "complex",
+      "focus": "liability_shift",
+      "job_id": "bdf8b455-0252-4629-9531-59abab386149",
+      "error": "Job failed: Unknown error",
+      "status_changes": [
+        {
+          "status": "processing",
+          "timestamp": 0.0452730655670166,
+          "progress": 10
+        },
+        {
+          "status": "failed",
+          "timestamp": 2.0484464168548584,
+          "progress": 0
+        }
+      ],
+      "test_name": "Large_Document_Liability_Shift",
+      "timestamp": "2025-09-26T07:13:54.989381",
+      "elapsed_time_from_start": 8.145042
+    },
+    {
+      "success": false,
+      "processing_time": 2.0610263347625732,
+      "file": "sample_05.pdf",
+      "prompt": "Change the legal domicile for all parties from their current jurisdictions to Texas, update governing law to Texas state law, and add a new dispute resolution clause requiring arbitration in Houston, Texas",
+      "complexity": "complex",
+      "focus": "jurisdiction_plus_clause_addition",
+      "job_id": "fd0fe296-431b-4924-a992-9ae63c985b15",
+      "error": "Job failed: Unknown error",
+      "status_changes": [
+        {
+          "status": "processing",
+          "timestamp": 0.044104814529418945,
+          "progress": 10
+        },
+        {
+          "status": "failed",
+          "timestamp": 2.04727840423584,
+          "progress": 0
+        }
+      ],
+      "test_name": "Multi_Party_Domicile_Change",
+      "timestamp": "2025-09-26T07:13:57.050614",
+      "elapsed_time_from_start": 10.206275
+    },
+    {
+      "success": false,
+      "processing_time": 2.0252866744995117,
+      "file": "sample_06.txt",
+      "prompt": "Change the service provider name to 'FinTech Innovations Ltd', shift governing law to California, reverse liability so the client indemnifies the provider, and add a new section on cryptocurrency trading services with associated risk disclaimers",
+      "complexity": "complex",
+      "focus": "comprehensive_modification",
+      "job_id": "faebff3a-30fe-4efe-aff5-672ac2f27561",
+      "error": "Job failed: Unknown error",
+      "status_changes": [
+        {
+          "status": "processing",
+          "timestamp": 0.01848745346069336,
+          "progress": 30
+        },
+        {
+          "status": "failed",
+          "timestamp": 2.021165609359741,
+          "progress": 0
+        }
+      ],
+      "test_name": "Financial_Services_Comprehensive_Modification",
+      "timestamp": "2025-09-26T07:13:59.076096",
+      "elapsed_time_from_start": 12.231757
+    },
+    {
+      "success": false,
+      "processing_time": 2.023571014404297,
+      "file": "sample_07.txt",
+      "prompt": "Replace 'Hash Blockchain Limited (HBL)' with 'CryptoExchange Pro Inc (CEP)', change Hong Kong jurisdiction to Singapore law, and shift client liability - make the client responsible for indemnifying CEP against regulatory and compliance risks",
+      "complexity": "complex",
+      "focus": "entity_and_liability",
+      "job_id": "5fec40de-3da3-4c6a-83c1-9e27f4ecc919",
+      "error": "Job failed: Unknown error",
+      "status_changes": [
+        {
+          "status": "processing",
+          "timestamp": 0.01481938362121582,
+          "progress": 30
+        },
+        {
+          "status": "failed",
+          "timestamp": 2.0179529190063477,
+          "progress": 0
+        }
+      ],
+      "test_name": "Blockchain_Contract_Entity_And_Liability",
+      "timestamp": "2025-09-26T07:14:01.099895",
+      "elapsed_time_from_start": 14.255557
+    },
+    {
+      "success": false,
+      "error": "Upload failed: HTTP 400 - {\"error\":\"Unsupported file type: .docx. Supported: .txt, .pdf, .rtf\",\"success\":false}\n",
+      "file": "sample_08.docx",
+      "prompt": "Add a new section for 'INTELLECTUAL PROPERTY RIGHTS' stating all work products belong to the client, change any service provider liability to client liability, and add termination clauses with 60-day notice requirements",
+      "complexity": "medium",
+      "focus": "clause_addition",
+      "test_name": "DOCX_Format_Clause_Operations",
+      "timestamp": "2025-09-26T07:14:01.103557",
+      "elapsed_time_from_start": 14.259219
+    },
+    {
+      "success": false,
+      "processing_time": 2.0121750831604004,
+      "file": "sample_09.txt",
+      "prompt": "Add a new financial product called 'Intraday Liquidity Facility', change payment terms from immediate to 30-day payment cycles, extend contract duration from current terms to 5-year terms, and add early termination penalties",
+      "complexity": "complex",
+      "focus": "financial_terms_modification",
+      "job_id": "3c66b1dc-2add-4725-bd67-860ee5154dc1",
+      "error": "Job failed: Unknown error",
+      "status_changes": [
+        {
+          "status": "processing",
+          "timestamp": 0.0051097869873046875,
+          "progress": 30
+        },
+        {
+          "status": "failed",
+          "timestamp": 2.0081300735473633,
+          "progress": 0
+        }
+      ],
+      "test_name": "Financial_Product_Terms_Modification",
+      "timestamp": "2025-09-26T07:14:03.115931",
+      "elapsed_time_from_start": 16.271591
+    },
+    {
+      "success": false,
+      "processing_time": 2.014859199523926,
+      "file": "sample_10.txt",
+      "prompt": "Update the Data Processing Agreement schedule to include GDPR Article 28 compliance requirements, change the data controller liability to shared liability model, add data breach notification requirements within 24 hours, and include data deletion timelines of 90 days post-contract termination",
+      "complexity": "complex",
+      "focus": "regulatory_compliance_update",
+      "job_id": "1505b532-6de4-4426-ae63-eab5c0ba9cfa",
+      "error": "Job failed: Unknown error",
+      "status_changes": [
+        {
+          "status": "processing",
+          "timestamp": 0.007809638977050781,
+          "progress": 30
+        },
+        {
+          "status": "failed",
+          "timestamp": 2.0108344554901123,
+          "progress": 0
+        }
+      ],
+      "test_name": "DPA_Schedule_Comprehensive_Update",
+      "timestamp": "2025-09-26T07:14:05.130968",
+      "elapsed_time_from_start": 18.286629
+    }
+  ],
+  "analysis": {
+    "summary": {
+      "total_tests": 10,
+      "successful_tests": 0,
+      "success_rate": 0.0,
+      "evaluation_duration": 18.286837
+    },
+    "performance_metrics": {
+      "processing_time": {
+        "average": 0,
+        "minimum": 0,
+        "maximum": 0,
+        "samples": 0
+      },
+      "quality_scores": {
+        "average": 0,
+        "minimum": 0,
+        "maximum": 0,
+        "samples": 0
+      },
+      "iterations": {
+        "average": 0,
+        "samples": 0
+      }
+    },
+    "complexity_analysis": {
+      "simple": {
+        "total": 1,
+        "successful": 0
+      },
+      "medium": {
+        "total": 2,
+        "successful": 0
+      },
+      "complex": {
+        "total": 7,
+        "successful": 0
+      }
+    },
+    "focus_analysis": {
+      "counterparty_modification": {
+        "total": 1,
+        "successful": 0
+      },
+      "jurisdiction_modification": {
+        "total": 1,
+        "successful": 0
+      },
+      "multi_parameter": {
+        "total": 1,
+        "successful": 0
+      },
+      "liability_shift": {
+        "total": 1,
+        "successful": 0
+      },
+      "jurisdiction_plus_clause_addition": {
+        "total": 1,
+        "successful": 0
+      },
+      "comprehensive_modification": {
+        "total": 1,
+        "successful": 0
+      },
+      "entity_and_liability": {
+        "total": 1,
+        "successful": 0
+      },
+      "clause_addition": {
+        "total": 1,
+        "successful": 0
+      },
+      "financial_terms_modification": {
+        "total": 1,
+        "successful": 0
+      },
+      "regulatory_compliance_update": {
+        "total": 1,
+        "successful": 0
+      }
+    }
+  }
+}

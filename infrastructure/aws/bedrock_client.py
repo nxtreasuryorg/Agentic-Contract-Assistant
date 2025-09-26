@@ -2,7 +2,7 @@
 AWS Bedrock Model Manager for Contract Assistant vNext
 
 This module provides the foundation for AWS Bedrock integration with support for:
-- Titan Text Premier v1:0 and Mistral Large 2402 v1:0 models
+- Nova Premier v1:0 (1000k) and Mistral Large 2402 v1:0 models
 - Retry logic and error handling
 - Model selection based on task complexity
 - Rate limiting and concurrent request management
@@ -49,7 +49,7 @@ class BedrockModelManager:
     Manages AWS Bedrock model interactions with retry logic and error handling.
     
     Supports:
-    - Primary model: amazon.titan-text-premier-v1:0
+    - Primary model: amazon.nova-premier-v1:0:1000k
     - Fallback model: mistral.mistral-large-2402-v1:0
     - Intelligent model selection based on task complexity
     - Retry logic with exponential backoff
@@ -58,14 +58,14 @@ class BedrockModelManager:
     
     # Model configurations
     MODELS = {
-        "titan_premier": "amazon.titan-text-premier-v1:0",
+        "nova_pro": "us.amazon.nova-pro-v1:0",
         "mistral_large": "mistral.mistral-large-2402-v1:0"
     }
     
     # Model parameters
     MODEL_PARAMS = {
-        "amazon.titan-text-premier-v1:0": {
-            "maxTokenCount": 3000,  # Titan Premier max is 3072
+        "us.amazon.nova-pro-v1:0": {
+            "maxTokens": 8000,  # Nova Pro max output tokens
             "temperature": 0.1,
             "topP": 0.9
         },
@@ -128,7 +128,7 @@ class BedrockModelManager:
         self.logger = logging.getLogger(__name__)
         
         # Model selection preferences from environment variables
-        self.primary_model = os.getenv('CONTRACT_PRIMARY_MODEL', self.MODELS["titan_premier"])
+        self.primary_model = os.getenv('CONTRACT_PRIMARY_MODEL', self.MODELS["nova_pro"])
         self.fallback_model = os.getenv('CONTRACT_FALLBACK_MODEL', self.MODELS["mistral_large"])
     
     def get_model_for_task(self, task_complexity: TaskComplexity, 
@@ -143,12 +143,12 @@ class BedrockModelManager:
         Returns:
             Model ID string for the selected model
         """
-        # Complex tasks or large documents use Titan Premier
+        # Complex tasks or large documents use Nova Pro
         if (task_complexity == TaskComplexity.COMPLEX or 
             document_length > 15000):
             return self.primary_model
         
-        # Moderate complexity tasks use Titan Premier for better accuracy
+        # Moderate complexity tasks use Nova Pro for better accuracy
         elif task_complexity == TaskComplexity.MODERATE:
             return self.primary_model
         
@@ -169,12 +169,20 @@ class BedrockModelManager:
         Returns:
             JSON string for request body
         """
-        if "titan" in model_id:
-            # Titan model format
+        if "nova" in model_id:
+            # Nova model format with schemaVersion
+            messages = [{"role": "user", "content": [{"text": prompt}]}]
+            system_list = []
+            if system_prompt:
+                system_list.append({"text": system_prompt})
+            
             body = {
-                "inputText": f"{system_prompt}\n\n{prompt}" if system_prompt else prompt,
-                "textGenerationConfig": self.MODEL_PARAMS[model_id]
+                "schemaVersion": "messages-v1",
+                "messages": messages,
+                "inferenceConfig": self.MODEL_PARAMS[model_id]
             }
+            if system_list:
+                body["system"] = system_list
         elif "mistral" in model_id:
             # Mistral model format
             messages = []
@@ -204,11 +212,11 @@ class BedrockModelManager:
         """
         response_data = json.loads(response_body)
         
-        if "titan" in model_id:
-            content = response_data["results"][0]["outputText"]
+        if "nova" in model_id:
+            content = response_data["output"]["message"]["content"][0]["text"]
             token_usage = {
-                "input_tokens": response_data.get("inputTextTokenCount", 0),
-                "output_tokens": response_data.get("results", [{}])[0].get("tokenCount", 0)
+                "input_tokens": response_data.get("usage", {}).get("inputTokens", 0),
+                "output_tokens": response_data.get("usage", {}).get("outputTokens", 0)
             }
         elif "mistral" in model_id:
             content = response_data["choices"][0]["message"]["content"]

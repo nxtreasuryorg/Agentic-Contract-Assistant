@@ -41,9 +41,9 @@
     }
   },
   "model_settings": {
-    "primary_model": "amazon.titan-text-premier-v1:0",
+    "primary_model": "us.amazon.nova-pro-v1:0",
     "fallback_model": "mistral.mistral-large-2402-v1:0",
-    "max_tokens": 4000,
+    "max_tokens": 8000,
     "temperature": 0.1,
     "top_p": 0.9
   },

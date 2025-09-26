@@ -19,8 +19,8 @@ class ContractAgents:
             load_dotenv(env_path, override=True)
 
         # Get Bedrock model configuration
-        self._actor_model = os.getenv("ACTOR_MODEL", "amazon.titan-text-premier-v1:0")
-        self._critic_model = os.getenv("CRITIC_MODEL", "amazon.titan-text-premier-v1:0")
+        self._actor_model = os.getenv("ACTOR_MODEL", "us.amazon.nova-pro-v1:0")
+        self._critic_model = os.getenv("CRITIC_MODEL", "us.amazon.nova-pro-v1:0")
         
         # Initialize Bedrock manager for custom LLM integration
         self.bedrock_manager = BedrockModelManager()
@@ -30,12 +30,12 @@ class ContractAgents:
         self._actor_llm = LLM(
             model=self._actor_model,
             temperature=0.1,  # Low temperature for precise contract editing
-            max_tokens=3000,  # Titan Premier max is 3072
+            max_tokens=8000,  # Nova Pro can handle much larger outputs
         )
         self._critic_llm = LLM(
             model=self._critic_model,
             temperature=0.2,  # Slightly higher for evaluation flexibility
-            max_tokens=2500,  # Conservative limit for Titan
+            max_tokens=8000,  # Nova Pro can handle much larger outputs
         )
 
     def contract_actor(self):

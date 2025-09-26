@@ -249,9 +249,9 @@ class ContractActorAgent(Agent):
         self.chunking_manager = DocumentChunkingManager()
     
     def _get_bedrock_model(self):
-        # Return configured Bedrock model (Titan Premier or Mistral Large)
+        # Return configured Bedrock model (Nova Premier or Mistral Large)
         return BedrockLLM(
-            model_id="amazon.titan-text-premier-v1:0",
+            model_id="amazon.nova-premier-v1:0:1000k",
             system_prompt=ACTOR_SYSTEM_PROMPT
         )
     
@@ -356,7 +356,7 @@ class ContractCriticAgent(Agent):
     
     def _get_bedrock_model(self):
         return BedrockLLM(
-            model_id="amazon.titan-text-premier-v1:0",
+            model_id="amazon.nova-premier-v1:0:1000k",
             system_prompt=CRITIC_SYSTEM_PROMPT
         )
 ```
@@ -464,7 +464,7 @@ class MemoryStorage:
 ```python
 class BedrockModelManager:
     def __init__(self):
-        self.primary_model = "amazon.titan-text-premier-v1:0"
+        self.primary_model = "amazon.nova-premier-v1:0:1000k"
         self.fallback_model = "mistral.mistral-large-2402-v1:0"
         self.bedrock_client = boto3.client('bedrock-runtime')
         self.max_concurrent_requests = 5  # Rate limiting for Bedrock
@@ -788,7 +788,7 @@ TEST_SCENARIOS = [
    ```python
    def select_model(prompt_complexity: float, document_length: int) -> str:
        if prompt_complexity > 0.7 or document_length > 10000:
-           return "amazon.titan-text-premier-v1:0"
+           return "amazon.nova-premier-v1:0:1000k"
        else:
            return "mistral.mistral-large-2402-v1:0"
    ```
@@ -882,7 +882,7 @@ TEST_SCENARIOS = [
    AWS_REGION=us-east-1
    AWS_ACCESS_KEY_ID=your_key
    AWS_SECRET_ACCESS_KEY=your_secret
-   CONTRACT_PRIMARY_MODEL=amazon.titan-text-premier-v1:0
+   CONTRACT_PRIMARY_MODEL=amazon.nova-premier-v1:0:1000k
    CONTRACT_FALLBACK_MODEL=mistral.mistral-large-2402-v1:0
    CREWAI_MAX_ITERATIONS=5
    CREWAI_QUALITY_THRESHOLD=0.85

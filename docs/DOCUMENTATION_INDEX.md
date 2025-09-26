@@ -83,9 +83,9 @@ From `config/prompt_config.json`:
 - **RTF formatting corruption**: -0.1
 
 ### AWS Bedrock Models
-- **Primary**: amazon.titan-text-premier-v1:0
+- **Primary**: amazon.nova-premier-v1:0:1000k
 - **Fallback**: mistral.mistral-large-2402-v1:0
-- **Max tokens**: 4,000
+- **Max tokens**: 8,000 (with 1M context window)
 - **Temperature**: 0.1
 
 ## API Contract
