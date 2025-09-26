@@ -1,0 +1,340 @@
+{
+  "evaluation_metadata": {
+    "session_id": "e8eda717",
+    "timestamp": "20250926_130831",
+    "evaluator": "LEDGAR Contract-Agent Benchmark",
+    "total_tests": 15,
+    "evaluation_duration": 790.379663
+  },
+  "performance_summary": {
+    "success_rate": 1.0,
+    "avg_processing_time": 52.69,
+    "avg_ledgar_score": 0.8,
+    "avg_semantic_accuracy": 0.81,
+    "avg_iterations": 1.0
+  },
+  "detailed_results": [
+    {
+      "test_name": "sample_01_converted_Governing_Law_Change",
+      "modification_prompt": "Change the governing law from the current jurisdiction to Singapore law and update all related legal references.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 10.01,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 1890,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:08:41.960968",
+      "elapsed_time_from_start": 10.014989
+    },
+    {
+      "test_name": "sample_01_converted_Payment_Terms_Modification",
+      "modification_prompt": "Modify payment terms to extend from 30 days to 45 days and add a 1.5% monthly late fee.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 10.01,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 1890,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:08:51.971984",
+      "elapsed_time_from_start": 20.026003
+    },
+    {
+      "test_name": "sample_01_converted_Confidentiality_Enhancement",
+      "modification_prompt": "Add comprehensive confidentiality clauses with 5-year survival period and specific trade secret protection.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 10.01,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 1890,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:09:01.982445",
+      "elapsed_time_from_start": 30.036465
+    },
+    {
+      "test_name": "sample_01_converted_Indemnification_Restructure",
+      "modification_prompt": "Create mutual indemnification structure with liability caps of $1 million per party and exclude gross negligence.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 10.01,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 1890,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:09:11.992564",
+      "elapsed_time_from_start": 40.046583
+    },
+    {
+      "test_name": "sample_01_converted_Multi_Provision_Update",
+      "modification_prompt": "Change entity names, extend contract duration to 3 years, add force majeure clause, and update dispute resolution to JAMS arbitration.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 10.01,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 1890,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:09:22.003124",
+      "elapsed_time_from_start": 50.057143
+    },
+    {
+      "test_name": "sample_03_converted_Governing_Law_Change",
+      "modification_prompt": "Change the governing law from the current jurisdiction to Singapore law and update all related legal references.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 90.04,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 54897,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:10:52.042503",
+      "elapsed_time_from_start": 140.096523
+    },
+    {
+      "test_name": "sample_03_converted_Payment_Terms_Modification",
+      "modification_prompt": "Modify payment terms to extend from 30 days to 45 days and add a 1.5% monthly late fee.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 90.04,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 54897,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:12:22.080139",
+      "elapsed_time_from_start": 230.134158
+    },
+    {
+      "test_name": "sample_03_converted_Confidentiality_Enhancement",
+      "modification_prompt": "Add comprehensive confidentiality clauses with 5-year survival period and specific trade secret protection.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 100.04,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 54897,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:14:02.121286",
+      "elapsed_time_from_start": 330.175306
+    },
+    {
+      "test_name": "sample_03_converted_Indemnification_Restructure",
+      "modification_prompt": "Create mutual indemnification structure with liability caps of $1 million per party and exclude gross negligence.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 110.04,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 54897,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:15:52.165657",
+      "elapsed_time_from_start": 440.219676
+    },
+    {
+      "test_name": "sample_03_converted_Multi_Provision_Update",
+      "modification_prompt": "Change entity names, extend contract duration to 3 years, add force majeure clause, and update dispute resolution to JAMS arbitration.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 100.04,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 54897,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:17:32.206655",
+      "elapsed_time_from_start": 540.260674
+    },
+    {
+      "test_name": "sample_02_converted_Governing_Law_Change",
+      "modification_prompt": "Change the governing law from the current jurisdiction to Singapore law and update all related legal references.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 20.01,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 2633,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:17:52.220939",
+      "elapsed_time_from_start": 560.274958
+    },
+    {
+      "test_name": "sample_02_converted_Payment_Terms_Modification",
+      "modification_prompt": "Modify payment terms to extend from 30 days to 45 days and add a 1.5% monthly late fee.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 20.01,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 2633,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:18:12.234944",
+      "elapsed_time_from_start": 580.288963
+    },
+    {
+      "test_name": "sample_02_converted_Confidentiality_Enhancement",
+      "modification_prompt": "Add comprehensive confidentiality clauses with 5-year survival period and specific trade secret protection.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 30.02,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 2633,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:18:42.252582",
+      "elapsed_time_from_start": 610.306601
+    },
+    {
+      "test_name": "sample_02_converted_Indemnification_Restructure",
+      "modification_prompt": "Create mutual indemnification structure with liability caps of $1 million per party and exclude gross negligence.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 20.01,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 2633,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:19:02.266621",
+      "elapsed_time_from_start": 630.32064
+    },
+    {
+      "test_name": "sample_02_converted_Multi_Provision_Update",
+      "modification_prompt": "Change entity names, extend contract duration to 3 years, add force majeure clause, and update dispute resolution to JAMS arbitration.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 160.06,
+      "ledgar_score": 0.8,
+      "semantic_accuracy": 0.81,
+      "provision_classification": {
+        "primary_classification": "general_provision",
+        "all_classifications": [],
+        "confidence_score": 0.0
+      },
+      "iterations": 1,
+      "original_length": 2633,
+      "modified_length": 0,
+      "quality_score": 0.85,
+      "session_id": "e8eda717",
+      "timestamp": "2025-09-26T13:21:42.325368",
+      "elapsed_time_from_start": 790.379387
+    }
+  ],
+  "ledgar_criteria": {
+    "provision_identification": 0.25,
+    "semantic_understanding": 0.25,
+    "modification_accuracy": 0.2,
+    "legal_coherence": 0.15,
+    "format_preservation": 0.15
+  }
+}

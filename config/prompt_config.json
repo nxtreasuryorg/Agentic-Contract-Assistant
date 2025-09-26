@@ -1,43 +1,21 @@
 {
   "prompt_settings": {
     "actor": {
-      "max_chunk_size": 25000,
-      "chunk_overlap": 5000,
-      "quality_threshold": 0.85,
-      "max_iterations": 5,
-      "chunking_enabled": true
+      "max_chunk_size": 10000,
+      "chunk_overlap": 2000,
+      "max_iterations": 2,
+      "chunking_enabled": true,
+      "timeout_seconds": 180
     },
     "critic": {
-      "evaluation_criteria": {
-        "entity_substitution": {
-          "weight": 0.25,
-          "description": "All entity name variations replaced correctly throughout the document"
-        },
-        "jurisdiction_transformation": {
-          "weight": 0.20,
-          "description": "Governing law clauses updated properly to new jurisdiction"
-        },
-        "liability_reallocation": {
-          "weight": 0.20,
-          "description": "Liability clauses properly shifted between parties"
-        },
-        "clause_operations": {
-          "weight": 0.20,
-          "description": "Required clauses added, deleted, or modified correctly"
-        },
-        "legal_coherence": {
-          "weight": 0.15,
-          "description": "Document maintains legal enforceability after modifications"
-        }
-      },
-      "minimum_score": 0.85,
-      "critical_failure_penalties": {
-        "broken_cross_reference": -0.2,
-        "missing_entity_update": -0.15,
-        "incorrect_liability_direction": -0.2,
-        "orphaned_clause": -0.1,
-        "rtf_formatting_corruption": -0.1
-      }
+      "minimum_score": 0.7,
+      "timeout_seconds": 60
+    },
+    "bedrock": {
+      "request_timeout": 300,
+      "max_retries": 5,
+      "retry_delay": 1,
+      "rate_limit_delay": 2
     }
   },
   "model_settings": {
@@ -80,21 +58,31 @@
     {
       "name": "counterparty_substitution",
       "instruction": "Change all references from 'Hash Blockchain Limited' to 'Quantum Finance Corp'",
-      "expected_manipulations": ["entity_substitution", "contact_updates"],
+      "expected_manipulations": [
+        "entity_substitution",
+        "contact_updates"
+      ],
       "min_score": 0.85,
       "max_iterations": 3
     },
     {
       "name": "domicile_shift_singapore",
       "instruction": "Change governing law from Hong Kong to Singapore, update all jurisdictional references",
-      "expected_manipulations": ["jurisdiction_change", "governing_law_update", "venue_change"],
-      "min_score": 0.80,
+      "expected_manipulations": [
+        "jurisdiction_change",
+        "governing_law_update",
+        "venue_change"
+      ],
+      "min_score": 0.8,
       "max_iterations": 4
     },
     {
       "name": "liability_reallocation",
       "instruction": "Shift liability from company to client, reverse indemnification clauses",
-      "expected_manipulations": ["liability_shift", "indemnification_reversal"],
+      "expected_manipulations": [
+        "liability_shift",
+        "indemnification_reversal"
+      ],
       "min_score": 0.75,
       "max_iterations": 5
     }

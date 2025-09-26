@@ -23,6 +23,7 @@ from core.types import CrewProcessingResult
 from infrastructure.storage.memory_storage import MemoryStorage
 from infrastructure.aws.bedrock_client import BedrockModelManager
 from core.document_processing import pdf_utils
+from core.utils.monitoring import get_monitor
 
 # Load environment variables
 load_dotenv()
@@ -66,10 +67,15 @@ def start_processing_thread():
         
         while True:
             try:
-                # Get job from queue (blocking) - increased timeout for large contract processing
-                job_id, user_prompt, file_path, original_filename = job_queue.get(timeout=120)
+                # Get job from queue (blocking) - no timeout, wait indefinitely
+                job_id, user_prompt, file_path, original_filename = job_queue.get(block=True)
                 
                 print(f"📋 Processing job {job_id}: {original_filename}")
+                
+                # Start monitoring
+                monitor = get_monitor()
+                monitor.start_job(job_id, file_size=os.path.getsize(file_path) if os.path.exists(file_path) else 0, 
+                                prompt_length=len(user_prompt))
                 
                 # Update job status to processing
                 memory_storage.update_job_status(job_id, "processing", 10)
@@ -85,25 +91,56 @@ def start_processing_thread():
                 
                 memory_storage.update_job_status(job_id, "processing", 30)
                 
-                # Process contract with CrewAI workflow
+                # Process contract with CrewAI workflow - with retry logic
                 print(f"🤖 Starting CrewAI processing for job {job_id}")
-                result = crew_manager.process_contract(
-                    original_rtf=original_rtf,
-                    user_prompt=user_prompt,
-                    job_id=job_id
-                )
+                max_retries = 2
+                result = None
+                
+                for attempt in range(1, max_retries + 1):
+                    try:
+                        if attempt > 1:
+                            monitor.increment_retry(job_id)
+                        memory_storage.update_job_status(job_id, "processing", 30 + (attempt * 10))
+                        result = crew_manager.process_contract(
+                            original_rtf=original_rtf,
+                            user_prompt=user_prompt,
+                            job_id=job_id
+                        )
+                        break  # Success, exit retry loop
+                    except Exception as retry_error:
+                        print(f"⚠️ Attempt {attempt} failed: {retry_error}")
+                        if attempt == max_retries:
+                            # Final attempt failed, create error result
+                            from core.types import CrewProcessingResult
+                            result = CrewProcessingResult(
+                                success=False,
+                                job_id=job_id,
+                                final_rtf=None,
+                                original_rtf=original_rtf,
+                                iterations_used=0,
+                                total_processing_time=0,
+                                final_score=0,
+                                crew_output="",
+                                error_message=f"Processing failed after {max_retries} attempts: {str(retry_error)}"
+                            )
+                        else:
+                            # Wait before retry
+                            time.sleep(5)
                 
                 # Store result in memory
                 memory_storage.store_result(job_id, result)
                 
                 if result.success:
                     memory_storage.update_job_status(job_id, "completed", 100)
+                    monitor.complete_job(job_id, True, quality_score=result.final_score, 
+                                       iterations=result.iterations_used)
                     print(f"✅ Job {job_id} completed successfully")
                 else:
                     memory_storage.update_job_status(
                         job_id, "failed", 0, 
                         result.error_message or "Processing failed"
                     )
+                    monitor.complete_job(job_id, False, error_message=result.error_message)
                     print(f"❌ Job {job_id} failed: {result.error_message}")
                 
                 # Clean up temporary file
@@ -111,7 +148,8 @@ def start_processing_thread():
                     os.remove(file_path)
                     
             except queue.Empty:
-                # No jobs in queue, continue waiting
+                # This shouldn't happen with block=True, but handle gracefully
+                time.sleep(1)
                 continue
             except Exception as e:
                 print(f"💥 Processing thread error: {e}")
@@ -169,6 +207,7 @@ def health_check():
                 "memory_storage_active": memory_storage is not None
             },
             "queue_size": job_queue.qsize(),
+            "performance_metrics": get_monitor().get_statistics(),
             "timestamp": datetime.now().isoformat()
         }), 200
         
@@ -405,6 +444,29 @@ def debug_queue():
     except Exception as e:
         return jsonify({
             "error": f"Debug queue failed: {str(e)}"
+        }), 500
+
+
+@app.route('/metrics', methods=['GET'])
+def get_metrics():
+    """Get performance metrics and statistics"""
+    try:
+        monitor = get_monitor()
+        stats = monitor.get_statistics()
+        recent_failures = monitor.get_recent_failures(5)
+        
+        return jsonify({
+            "success": True,
+            "statistics": stats,
+            "recent_failures": recent_failures,
+            "timestamp": datetime.now().isoformat()
+        }), 200
+        
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": f"Failed to get metrics: {str(e)}",
+            "timestamp": datetime.now().isoformat()
         }), 500
 
 

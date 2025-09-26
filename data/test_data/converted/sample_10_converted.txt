@@ -1,0 +1,290 @@
+﻿Subject to compliance with this Clause 11, XYZ the parties shall not be liable for the non-performance or delay in performance of its obligations under this Agreement to the extent such failure is due to a Force Majeure Event.  Any suspension of XYZ's the parties obligation to provide any Service hereunder shall be in effect for no longer than is required by the Force Majeure Event.  XYZ the parties agrees that following the cessation of any Force Majeure Event, XYZ the parties will restore such Services and resume compliance of any obligations as expeditiously as possible.
+14. INDEMNIFICATION
+1. Client agrees to defend, indemnify, and hold harmless XYZ and their partners, and their respective employees from and against any and all claims to the extent arising out of or relating to (i) Client's breach of any provision of this Service Agreement; (ii) any disputes between XYZ and Partners; or (iii) Client's gross negligence or wilful misconduct. The Client also agrees to defend, indemnify, and hold harmless all XYZ Indemnitees from and against any claims to the extent arising out of or relating to (A) Activity resulting from instructions provided by Client, provided that XYZ acted in a manner consistent with Client's instructions; (B) any inaccurate or incomplete information provided to XYZ as part of the onboarding process where the Client knew or had reason to suspect it to be so; (C) Client fails to comply with legal and/or compliance requirements; (D) Client's failure to acquire binding acceptance of the Service Agreement, and XYZ's Privacy Policy; (E) any dispute between XYZ and Client to the extent that such dispute relates to or arises out of the acts or omissions of Client or any Client Indemnitee; (F) a breach by the Client of any agreement between XYZ and the Client.
+2. XYZ agrees to defend, indemnify, and hold Client and its affiliates, directors, officers, employees and agents harmless from and against any non-affiliated third-party claim to the extent that arises out of a finding that XYZ infringed a third party's intellectual property rights. 
+3. Each party agrees to defend, indemnify, and hold harmless the other from and against any claim to the extent that such claim arises out of or relates to (i) a security breach, (ii) a violation of data protection, or (iii) the indemnifying party's gross negligence, willful misconduct, or intentional breach of any agreement between XYZ and the Client. In the event of a security breach, the obligation to indemnify includes reimbursement to the other party for the direct, actual, and documented costs of any notice and related mitigation measures that are required to be provided to Partners as a result of the security breach under legal requirements.
+4. Neither party's indemnification obligations under any agreement between XYZ and the Client shall apply to the extent such claim(s) have arisen from the other party's acts or omissions, or from the other party's, their affiliates', or service providers' breach of any provision of any agreement between XYZ and the Client, or failure by the other party to comply with applicable legal requirements.
+15. GOVERNING LAW AND ARBITRATION
+1. The Agreement shall be governed by and construed exclusively in accordance with Swiss law, excluding the conflict-of-law rules, the IPRG, and excluding the United Nations Convention on Contracts for the International Sale of Goods.
+2. Any dispute, controversy, or claim arising out of, or in relation to, this contract, including regarding the validity, invalidity, breach or termination thereof, shall be resolved by arbitration in accordance with the Swiss Rules of International Arbitration of the Swiss Arbitration Centre in force on the date on which the Notice of Arbitration is submitted in accordance with those Rules. The number of arbitrators shall be one. The seat of the arbitration shall be Zug. The arbitral proceedings shall be conducted in English. The dispute shall be decided on the basis of documentary evidence only. Notwithstanding the above, the parties may agree at any time to submit the dispute to mediation in accordance with the Swiss Rules of Commercial Mediation of the Swiss Chambers' Arbitration Institution.
+16. ENTIRE AGREEMENT
+1. This Agreement constitutes the entire agreement between XYZ and the Client with respect to the Services. These terms and conditions describe the entire liability as between XYZ and the Client, and set forth the exclusive remedies, with respect to Services. If any provision of this Agreement (or portion thereof) is held to be invalid or unenforceable under applicable law, then it should be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law, and the remaining provisions will continue in full force and effect.
+2. Any general terms and conditions of the Client are explicitly excluded and shall not be applicable for any matter among the parties which is regulated by the scope of this Agreement.
+17. PARTIES' SIGNATURES
+
+Client
+XYZ
+Company Name
+ABABC
+XYZ MBH
+XYZ GMBH
+Business Address
+
+Address
+Address
+Signatory's Name
+
+
+Ali 
+Title
+
+Co
+Co
+Date
+
+
+
+Signature
+
+
+
+
+18. SCHEDULE 1: XYZ FINANCIAL PRODUCT
+This schedule ("Schedule 1") governs Client-Specific Terms, Limits and Fees for XYZ Financial Product Service
+This schedule can be amended via "SCHEDULE 1: XYZ FINANCIAL PRODUCT" any time by consent of both parties for future expansion of the business or otherwise, independent of the rest of this agreement.
+1. XYZ FINANCIAL PRODUCT
+1. GENERAL
+1. XYZ Financial Product is a transactional post-funding option as short-term working capital
+2. Client will be provided with access to XYZ Credit API as well as XYZ Client Dashboard to manage their credit portfolio
+3. Upon signing this agreement, the parties will work in good faith to set up everything required to comply with the obligations assumed by each party herein.  Upon completing set up, parties will perform user acceptance testing with nominal amounts to be agreed by the parties to ensure that everything operates as expected.  The Financial Product set forth in this Schedule 1 shall become effective upon the parties' written confirmation that everything is operating as expected.  
+4. At any point during the testing stage, the parties shall have the right to terminate the agreement effective immediately upon delivery to the other of written notice specifying the reason why such party considers that user acceptance testing has not been satisfied.
+2. SETTLEMENT OF PAYOUT ORDERS WITH XYZ FINANCIAL PRODUCT
+1. Each Financial Product's each credit (advance) settles a Transaction Order for a specific corridor of the Client. Each credit advance under the Financial Product shall be determined based on the total sum of each Transaction Order conducted within a specific corridor of the Client during the prior loan period.
+2. Request and Disbursement Process:
+a. Request Submission: The Client shall submit requests for credit disbursements through the XYZ Credit API or via a valid written communication medium, specifying the requested amount based on the total transaction volume within the specified corridor.
+b. Supporting Data: If due, the Client is required to provide an anonymized list of each Transaction Order for the specified period as outlined in Schedule 1.
+c. Verification and Disbursement: Upon confirming that the supporting data is accurate and the requested amount is within the limits specified in Schedule 1 (daily and total facility limits), XYZ will disburse funds either through the XYZ Credit API or manually.
+3. Whitelisted Wallet / Bank Account for Disbursement
+a. Whitelist Requirement: XYZ shall disburse funds only to the Client's whitelisted wallet or bank accounts as specified in Schedule 1 of this Agreement.
+b. Whitelisting Process:
+i. Listing Requirement: A wallet or bank account must first be listed in Schedule 1. Any changes or additional wallets or bank accounts must be officially added through an amendment signed by both parties.
+ii. Proof of Ownership: The Client must submit proof of account ownership, which XYZ will verify. Only corporate accounts owned by the holding entity or a signed entity of the client or an approved client partner will be accepted.
+iii. Test Transaction: A test transaction will be conducted, and its receipt must be confirmed in writing by the Client before the wallet or bank account is officially whitelisted.
+4. Funds Transfer Obligations: Each party shall execute fund transfers in accordance with the written instructions provided by the other party. In the event of funds being misrouted due to instructions directing payment to a non-whitelisted or incorrect account, the sending party shall bear sole responsibility. No party shall bear liability for the misrouting of payments caused by following accurately provided instructions to a non-whitelisted account.
+5. Designated Recipients: Advances may be issued directly to the Client, or to its sister or holding companies, or to a designated receiving party as detailed in Schedule 1 of this Agreement. The specified receiving party must have a license to undertake the necessary activities in relation to the selected payment corridor and shared Payment Data. 
+6. Partner Documentation and Compliance Checks: In instances where the Client's partner is designated as the recipient of credit advances, the Client shall furnish all relevant documentation evidencing the commercial nature of the relationship, including signed agreements and records demonstrating active participation in cross-border payment flows. XYZ shall conduct necessary compliance reviews of the Client's partner prior to Financial Product approval for each corridor and shall continue such reviews on a regular basis.
+7. 
+8. Each party will deliver funds pursuant to the instructions delivered in writing by the other party.  Neither party will assume responsibility for the misrouting of a payment attributable to faulty account information.
+9. After the Financial Product request of Client is approved per corridor the transaction amount for each transaction is provided from XYZ Liquidity Pool for local payouts, automatically by XYZ Credit API or manually by XYZ team.
+10. After Financial Product is granted to Client, XYZ chooses to provide credit (advance) per transaction to Client directly, to Client's sister or holding companies, or to a receiving party as one of Client's licensed partners on behalf of Client which will be specified and agreed upon in Schedule 1. The specified receiving party must have a license to undertake the necessary activities in relation to the selected payment corridor and shared Payment Data. 
+11. If Client's partner is selected for the credits per transaction to be provided Client requires to provide the documentation regarding the commercial nature of the existing relationship as signed agreements and any form of documentation. The agreements and documentations must show the current activities of the relationship in a cross-border payment flow between Client and Client's partner. XYZ conducts necessary compliance checks of Client's partner before the approval of Financial Product per corridor per Client's partner and regularly. 
+12. 
+
+
+
+3. Maturity & Repayment
+1. Upon approval of credit, XYZ will provide a written communication to the Client stating the Repayment Amount and the Maturity Date. Upon approval of credit, XYZ Credit API returns a Repayment Amount and Maturity Date in Coordinated Universal Time (UTC). The Repayment Amount includes the principal and all associated fees (including interest) payable to XYZ.
+2. Matured Credit can only be repaid by the Client in the specific currency and account number in this agreement.
+
+
+2. FEES
+Service Fees and related Terms & Conditions are described in Section 19.3
+1. Set-up Fee: NA
+2. Monthly Recurring Fee: NA
+3. Financial Product Signing Fee:  NA	
+4. The service fees of XYZ Financial Product regarding Maximum Repayment Days, only as banking days
+i. Fee structure regarding repayment days based on the specified volume per month:
+Repayment day
+Financial Product fee (of the volume)
+3
+0.0138%
+
+
+5. Selected terms:
+i. Specified Corridor: US to Mexico
+ii. Selected repayment day for the specified corridor (Maximum Repayment Days Commitment): T+2
+iii. Final fee regarding specified repayment day: 0.07638%
+iv. Advance and Repayment Days: 
+* Advance and Repayment is made only in banking days 
+a. Borrowing: YES
+b. Repaying: YES
+* Cut-off Time and Timezone: 5 PM Swiss time 
+* Monthly Maximum Transaction Volume: $1,0000,000
+* Daily Transaction Limit: $100,000
+* Outstanding Principal Amount: $1,000,000
+* Daily Minimum Coverage: 100% of the Daily Transaction Limit
+* Minimum Monthly Guarantee Volume: This is calculated by multiplying the number of business days in the applicable calendar month by the Daily Minimum Coverage of the Daily Transaction Limit. This calculation determines the minimum transaction volume guaranteed by the Client each month.
+v. Minimum Monthly Guarantee Fee: Calculated as "Minimum Monthly Guarantee Volume * Final Fee Regarding Specified Repayment Day".
+* Minimum Guarantee: 80% of the Monthly Maximum Transaction Volume: $10,800,000
+vi. Minimum Guarantee Fee: $33,440 - Calculated as "monthly maximum transaction volume * minimum guarantee rate * final fee regarding specified repayment day. Supporting Data Period: Every week on Wednesdays for the period covering the previous 7 days.
+vii. Notice Period: The operational start date shall be agreed by both parties subject to Notice Period. To stop using XYZ Financial Product or change Minimum Guarantee per corridor is 1 month.
+viii. Client's specified licensed partner:  NA
+ix. Client's Treasury Principal Deposit Address:
+Blockchain: (ETH, XLM etc.)
+* [XYZ INPUT]
+x. Client's Treasury Commission Deposit Address:
+Blockchain: (ETH, XLM etc.)
+* [XYZ INPUT]
+xi. Client's External Payment Wallet Address:
+Blockchain: (ETH, XLM etc.)
+* [CLIENT INPUT]
+3. DEFINITIONS, TERMS & CONDITIONS
+"Lender": XYZ 
+"Borrower": Client
+(each a "Party", collectively the "Parties")
+1. GRANTING OF FINANCIAL PRODUCT
+1. Maximum Financial Product Amount: The Lender grants the Borrower a rotating Financial Product in accordance with the Monthly Maximum Transaction Volume and the repayment schedule per corridor, specified by Borrower, and terms of this Financial Product agreement (the "Schedule").
+2. Monthly Maximum Volume Commitment: Borrower hereby commits a Monthly Maximum Transaction Volume per corridor. This amount shall be used for the calculation of credit allocation. XYZ does not guarantee providing a Financial Product for the volumes above the monthly maximum volume committed per specified corridor.
+3. Minimum Guarantee: Borrower hereby commits a minimum guarantee with a percentage specified in 18.2 of the Monthly Maximum Transaction Volume Commitment per corridor. This amount shall be used for the calculation of all associated fees. The associated fees of Minimum Guarantee shall be paid monthly regardless of the volume in case the volume is lower than the specified percentage of the Monthly Maximum Transaction Volume Commitment per corridor. The payment shall be in 5 banking days after the end of the related month the Financial Product is used along with the rest of monthly Transaction Fee is billed at the end of the month regarding the monthly volume transacted per corridor.
+4. Maximum Repayment Days: Borrower hereby commits a maximum repayment days per Advance for XYZ Financial Product per corridor. The repayment days are counted as the 1st day is the day Advance is granted and the last day Advance is repaid and all Banking Days in-between as it is described in the table below as an example to 4-Days of Maximum Repayment Days. This amount shall be used for the calculation of all associated fees. [section seems to be off sync with previous sections]
+
+5. Financial Product Usage: As of any date of determination, the sum of the amount of outstanding Advances and all associated fees (including interest) less Financial Product amounts repaid by the Borrower.
+6. Repayment Days Limits: At the end of a month, actual Maximum Repayment Days per corridor shall not exceed agreed Maximum Repayment Days specified in Section 18.2. If it exceeds the agreed Maximum Repayment Days per corridor, Lender has the right to increase the fees regarding Section 18.2 at the end of the month to be applied immediately to the following month. This change shall only increase the transaction fee per corridor and cannot decrease it. At the end of a month, actual Maximum Repayment Days can be lower than the specified amount in Section 18.2. In that case, Borrower might demand to negotiate Transaction Fee specified in Section 18.2 for the second following month from that month of negotiation. The fees can be changed with written consent of each party. Borrower accepts that there is no refund of any Transaction Fee paid for the previous months even actual Maximum Repayment Day is lower than committed. 
+7. Advances: Lender will grant Borrower a credit equal to the maximum outlined in Section 18.2
+8. Disbursement of Financial Product: Lender will start crediting the designated payouts on behalf of the Borrower in Advances within 1 day after all the covenant are fulfilled.
+9. Purpose of Financial Product: Lender shall provide, and Client shall use the Financial Product exclusively for the following purpose: Settle a Transaction Order. Lender cannot provide or Client cannot use or demand in any way to receive a credit, advance or any amount other than stated purpose here. 
+10. Banking Days: Lender grants a Financial Product to Borrower only in banking days of the country specified in Section 18.2. All payments due on a non-banking day get automatically deferred to the Business Day. Lender might have the option to provide a Financial Product to Borrower outside of Banking Days if Lender and Borrowers agrees mutually. 
+2. INTEREST, TRANSACTION FEE AND REPAYMENT OF FINANCIAL PRODUCT
+1. Transaction Fee: Advances bear a fee of per credited transaction ("Transaction Fee") that becomes due on specified Maximum Repayment Days.
+2. Repayment: The Borrower shall repay each Advance amount and associated fees within Maximum Repayment Days per Corridor following the receipt of the Advance. 
+3. Account for Repayment by the Borrower: The account for repayment is specified in section 18.2. Any alternative account for repayment has to be agreed in writing by XYZ.
+4. Default Interest Rate: If the Borrower fails to pay any amount due under this Schedule when due, the Borrower owes the Lender applicable fees stated under 18.2, which shall be payable upon demand. In addition to the foregoing, a late payment charge stated under 18.2 of each late payment hereunder may be charged on any payment not received by XYZ within 10 (ten) calendar days after the payment due date thereof, but acceptance of payment of any such charge shall not constitute a waiver of any event of default under the Schedule. In no event shall the fees payable under this Schedule at any time exceed the maximum rate permitted by law. Further claims or rights of the Lender are reserved.
+5. Banking Days: Borrower repays each Advance and its associated fees in banking days of the country specified in Section 18.2.
+3. TERM AND MATURITY
+1. Term and Maturity: Lender grants the Financial Product for an indefinite term. Either Party may terminate this Schedule at any time subject to the Notice Period. At the end of the notice period ("Credit Maturity Date"), the outstanding Financial Product amount, together with all associated fees (including interest) under this Schedule, becomes due.
+2. Notice Period The notice period to stop using the Financial Product or to change Maximum Monthly Volume Commitment is as stated under 18.2 Borrower guarantees to continue paying agreed Minimum Guarantee Fee within the notice period.
+3. Pausing Credit Service Lender shall stop providing any Advances and services regarding XYZ Financial Product if the repayment of any Advances is overdue 2 days. 
+4. Daily Cut-off times and associated time zones are defined in 18.2.
+4. TERMINATION WITHOUT NOTICE AND MANDATORY EARLY REPAYMENT OF THE FINANCIAL PRODUCT
+1. Immediate repayment of the Financial Product: In case of termination pursuant to this Section 18.2, the Borrower must immediately repay to the Lender the outstanding Financial Product amount, together with all associated fees (including interest) owed under this Schedule.
+2. Events The Lender may terminate with immediate effect this Schedule by written notification to the Borrower if:
+* the value of the Collateral is no longer assured;
+* the Borrower uses the Financial Product for purposes other than that (or those) specified in Section 19.1;
+* the Borrower fails to pay an amount due under this Schedule when due;
+* any fraudulent activity 
+* the Borrower no longer utilizes XYZ Financial Product
+* the Borrower specified volumes per corridors are 50% below the Monthly Maximum Volume Commitments 
+* the Borrower is no longer able to meet its obligations when they fall due, ceases its business activities or otherwise becomes insolvent;
+* the Borrower enters into negotiations with one or more creditors regarding the adjustment, restructuring and/or maturity of its debts;
+* the Borrower is dissolved or liquidated, or a petition or request for the opening of bankruptcy proceedings, a composition moratorium, a suspension of bankruptcy, dissolution or liquidation, or any similar proceedings, is initiated by or against the Borrower.
+5. FINAL PROVISIONS
+1. Amendments Any amendment or addition to this Schedule must be in writing and executed by each Party. Each party agrees that this Schedule and any amendment or addition thereto may be electronically signed, and that any electronic signatures appearing on this Schedule are the same as handwritten signatures for the purposes of validity, enforceability, and admissibility.
+2. Severability Should any one or more provisions of this Schedule be or become invalid, the other provisions shall not be affected. Invalid provisions shall be substituted with provisions which are most closely in line with the intended purpose.
+3. Limitation of Liability 
+i.  To the extent permitted by Applicable Laws, neither Party shall be liable to the other for any special, incidental, indirect or consequential damages of any kind, including without limitation loss of profits, whether in contract or tort, even if advised of the possibility thereof. The foregoing limitation of liability does not apply to amounts payable by a Party pursuant to its indemnity obligations hereunder but applies in all other instances regardless of the cause of action under which such damages are sought. Client acknowledges and agrees that in no event shall XYZ or its Affiliates, or any of their Representatives, be liable for any liability of any nature suffered by Client, Client's Affiliates, or any of their Representatives arising directly or indirectly from any act or omission of Client, Client's Affiliates, or any of their Representatives.
+4. Indemnity: Each Party (as defaulting party) shall indemnify, defend and hold harmless the other Party (as non-defaulting party) and such other Party's Affiliates from and against all third party claims, demands, suits or actions (and any resulting losses, damages, fines, penalties, costs, expenses, and reasonable attorneys' fees) arising from or in connection with the defaulting party's (a) material breach of this Agreement; (b) breach of confidentiality obligations; (c) infringement of Intellectual Property rights of any party and/or any third party; and (d) non-compliance with Applicable Laws. To the extent permitted by Applicable Laws, total liabilities arising from the operation of the indemnity above for each of the Parties shall not exceed the total amount of Services Fees paid by Client to XYZ in the twelve (3) month period immediately prior to the occurrence of such liability, for any and all matters combined across the term of this Agreement unless otherwise specified.
+5. Payment of Fees: Once XYZ begins processing a transaction, XYZ may deduct all Service Fees or other applicable fees as stated in this Agreement hereto from the Client's Account. If XYZ has processed a Transaction, but the Transaction amount has erroneously been paid out to an unintended Beneficiary due to mistakes in the Client Instructions, XYZ will use reasonable efforts to recover such amounts of remittance made in error, subject to XYZ's Service Fees, and/or handling fees charged by any correspondent bank or service provider, but XYZ cannot guarantee the return of funds from the wrong Beneficiary. Due to real-time processing, XYZ can only cancel Transactions when money has not been paid out.  
+i. XYZ is also entitled to its Service Fees as specifically set forth in this agreement.
+ii. Client shall not be responsible for fees in the following scenarios:
+* If XYZ cannot process a Transaction due to AML and/or CTF issues (for example, if the Beneficiary matches a name on a sanctions list), XYZ will cancel the Transaction. If the Advance of the related transaction was already repaid by Borrower XYZ will refund the principal transaction amount.
+* If the failed Transaction is due to errors caused by XYZ, XYZ will cancel the Transaction. If the Advance of the related transaction was already repaid by Borrower XYZ will refund the principal transaction amount and cancel the related transaction's fees. 
+19. SCHEDULE 5: DATA PROCESSING AGREEMENT (DPA)
+This schedule ("Schedule 5") governs Data Processing Agreement according to Art. 28 GDPR. This agreement is between the Client, hereinafter referred to as the "Controller" and XYZ, hereinafter referred as the "Processor".
+The Processor offers the below stated services to the Controller. In this context, the Processor processes personal data for which the Controller is responsible.
+Service
+Description
+XYZ Financial Product
+XYZ Financial Product is a transactional post-funding option as short-term working capital in selected corridors of the Client
+
+This contract specifies the obligations of the contracting parties regarding data protection in accordance with the General Data Protection Regulation ("GDPR") of the European Union dated May 25, 2018.
+This schedule can be amended via "SCHEDULE 5: DATA PROCESSING AGREEMENT" any time by consent of both parties for future expansion of the business or otherwise, independent of the rest of this agreement.
+1. SUBJECT AND DURATION OF THE CONTRACT
+1. Subject: The subject of this Agreement (hereinafter referred to as "Agreement") is set forth in the CLIENT SERVICE AGREEMENT
+2. Duration: The duration of this contract corresponds to the term of the CLIENT SERVICE AGREEMENT.
+2. OBJECT OF THE CONTRACT
+1. Purpose of the data processing: The purpose of the data processing provided by the Processor is the provision of XYZ Services for the Controller. These services are set forth in the beginning of this Schedule.
+2. Place of the data processing: 
+i. The Data Processing covered by the Agreement is performed in Switzerland and/or in the EU or in an EFTA state. 
+ii. The Data Processor reserves the right to the outsourcing of data processing in certain business areas and services. In case that data is made available to a third-party service provider, this third party is also bound by confidentiality and the provisions of the Data Protection Act in respect of the data in question.
+iii. The Processor shall ensure that it guarantees adequate data protection in the context of outsourcing to a third country or a cloud solution pursuant to the above section by means of sufficient guarantees and that it complies with the special requirements pursuant to Art. 44 et seq. DSGVO. For this purpose, the Processor shall, for example, conclude the necessary module of the EU Standard Contractual Clauses ("SCCs") of June 4, 2021.
+iv. In any case, the Processor shall conduct a risk assessment in the form of a Transfer Impact Assessment ("TIA") prior to the transfer to a state for which there is no adequacy decision and thus determine the risk to the rights of the Data Subjects through access by authorities without legal recourse guarantee in the respective state. A transfer may only take place if the corresponding risk has been classified as low within the meaning of Clause 14 of the SCCs. The TIA must be made available to the Controller without being requested to do so prior to the transfer.
+3. Type of Data: The following types/categories of data are subject to the processing services provided by the Processor
+i. Personal data (e.g. name, address, date of birth, marital status, job title, company affiliation, resumes, etc.);
+ii. Electronic identification data (such as IP address, electronic signature, connection/log data, cookies);
+iii. Communication data (e.g., telephone, e-mail, PIN, password, ports, login);
+iv. Financial and payment data (bank, account details, wallet addresses);
+v. Information (from third parties, e.g. credit agencies, or from public directories).
+4. Categories of data subjects: The following categories of data subjects are affected by the processing services provided by the Processor. The categories each include former, current, and potential future affected individuals.
+i. Employees;
+ii. Customers;
+iii. Interested parties;
+iv. Subscribers;
+v. Suppliers;
+vi. Sales representatives;
+vii. Contact partners.
+3. APPROPRIATE TECHNICAL AND ORGANISATIONAL MEASURES
+1. Data Security: 
+i. The Processor shall ensure data security by taking appropriate measures pursuant to Art. 32 GDPR. The measures are set out in ANNEX I below. 
+ii. Listed are measures that ensure an appropriate level of protection with regard to confidentiality, integrity, availability and the resilience of the systems. When choosing adequate measures, the state of the art, the costs and the type, scope and purpose of the processing are taken into account.
+2. Adaptation: The technical and organizational measures are subject to technical progress and further development. Hence, the Processor is permitted to implement alternative adequate measures. In doing so, the security level of the defined measures may not be undercut. Significant changes shall be documented.
+4. DUTIES OF THE CONTROLLER
+1. The Controller undertakes to disclose the following information to the Processor prior to the commencement of the processing. Alternatively, the Controller may fulfil its duty to inform by providing the Processor with a copy of the records of its processing activities.
+i. The purpose of the data processing;
+ii. The description of the categories of data subjects; 
+iii. The description of the categories of processed personal data;
+iv. Whether data of EU citizens is processed;
+v. The category of recipients of the processed data;
+vi. The storage period of the personal data;
+vii. Whether other processors have been additionally commissioned by the Controller, if the Processor is to cooperate with these processors.
+5. CORRECTION, RESTRICTION AND DELETION OF DATA
+1. The Processor may not correct, delete or restrict the processing of data processed in accordance with documented instructions from the Controller. Insofar as a data subject contacts the Processor directly in this regard, the Processor shall forward this request to the Controller without delay.
+6. GENERAL OBLIGATIONS OF THE PROCESSOR
+1. In addition to compliance with the provisions of this Agreement, the Processor needs to comply with legal obligations pursuant to Articles 28 to 33 of the GDPR; in this respect, the Processor shall in particular ensure compliance with the following requirements.
+i. The Processor shall only use employees or sub processors who have been obligated to maintain confidentiality and have been introduced to the relevant provisions of data protection;
+ii. Processing shall be carried out exclusively in accordance with the Controller's instructions, unless the Processor is required by law to process the data;
+iii. The Controller and the Processor shall cooperate with the supervisory authorities in the performance of their duties upon request;
+iv. Immediate information to the Controller about actions and measures taken by the supervisory authority, insofar as they relate to this Agreement;
+v. Insofar as the Controller is itself subject to an inspection by the supervisory authority, administrative or criminal proceedings, a liability claim by a data subject or a third party or another claim in connection with data processing services provided the Processor, the latter shall - if possible - support the Controller to a reasonable extent;
+vi. The Processor shall regularly monitor the internal processes as well as the technical and organizational measures to ensure that the processing in its area of responsibility is carried out in accordance with the requirements of the applicable data protection law;
+vii. The Processor shall enable the verifiability of the technical and organizational measures taken within the course of inspections pursuant to Section 22.8 hereunder.
+7. SUBCONTRACTING RELATIONSHIPS
+1. Subcontracting relationships shall be understood as services which relate directly to the provision of the main service by the Processor (hereinafter referred to as "sub processing"). This does not include ancillary services which the Processor uses, for example, as telecommunications services, postal/transport services, maintenance and user service or the disposal of data carriers and other measures to ensure the confidentiality, availability, integrity and resilience of the hardware and software of data processing systems. However, the Processor shall be obligated to implement appropriate and legally compliant contractual agreements as well as control measures to ensure data protection and data security of the Controller's data even in the case of out-sourced ancillary services. 
+2. The Processor is entitled to commission sub processors with data processing instructions.
+8. INSPECTIONS
+1. The Controller shall be entitled to carry out inspections in consultation with the Processor or to have such inspections carried out by inspectors that are to be named on a case-to-case manner. The Controller shall have the right to convince itself of the Processor's compliance with this Agreement by means of random inspections on-site. The Processor must be notified 2 (two) months before the inspections take place. 
+2. The Processor shall ensure that the Controller can convince itself of the Processor's compliance with its regulatory obligations pursuant to Art. 28 GDPR. The Processor undertakes to provide the Controller with the necessary information upon request and, in particular, to provide evidence of the implementation of the technical and organizational measures.
+3. Evidence of such measures, which do not only concern the service provided to the Controller, can be provided by:
+i. Compliance with approved codes of conduct pursuant to Art. 40 GDPR;
+ii. Certification in accordance with an approved certification procedure pursuant to Art. 42 GDPR;
+iii. Current attestations, reports or report extracts from independent bodies (e.g. auditing, data protection officers, IT security department, data protection auditors, quality auditors).
+4. The Processor will claim remuneration for enabling inspections by the Controller. The claim to remuneration shall cease if violations of this Agreement by the Processor are discovered during the inspections.
+9. SUPPORT OF THE CONTROLLER BY THE PROCESSOR
+1. The Processor shall support the Controller in complying with its obligations under Articles 32 to 36 of the GDPR regarding the security of personal data, data breach notification obligations, data protection impact assessments and prior consultations. This includes, among others:
+i. Ensuring an adequate level of protection through technical and organizational measures that enable the timely detection of relevant breach events;
+ii. The obligation to report personal data breaches to the Controller without delay.
+2. The Processor shall be entitled to remuneration for support services that are not included in the CLIENT SERVICE AGREEMENT or are not due to the Processor's misconduct.
+10.  INSTRUCTIONS OF THE CONTROLLER
+1. The Processor shall confirm verbal instructions without delay (at least in text form). 
+2. The Processor shall inform the Controller without delay if it is of the opinion that an instruction violates data protection regulations. The Processor shall be entitled to suspend the implementation of the instruction until it is confirmed or amended by the Controller.
+11.  DELETION AND RETURN OF PERSONAL DATA
+1. Copies: Copies or duplicates of the data shall not be made without the knowledge of the Controller. Excluded from this are security copies, insofar as they are necessary to ensure proper data processing, as well as data that is required with regard to compliance with statutory retention, regulatory and legal obligations.
+2. Deletion: Upon completion of the contractually agreed service or earlier upon request by the Controller - at the latest upon termination of the CLIENT SERVICE AGREEMENT - the Processor shall hand over to the Controller all documents in its possession, drawn up results of the processing services, as well as data files related to the contractual relationship, or destroy them in accordance with data protection laws after prior consent by the Controller. The same shall apply to test and rejected material. The protocol of the deletion shall be submitted upon request. The only exception to this will be information and documentation that cannot be destroyed in line with statutory retention, regulatory and legal obligations.
+3. Storage: Documentation that serves as proof of orderly and proper data processing shall be retained by the Processor beyond the end of the contract in accordance with the applicable retention periods. The Processor may hand them over to the Controller at the end of the contract to relieve the Processor.
+12.  LIABILITY
+1. The liability of the Processor for damages resulting from the violation of data protection obligations shall be governed by the statutory provisions (Art. 82 GDPR). The Processor shall only be liable for direct, immediate damages. Liability for indirect damages ("consequential damages") is excluded. In particular, the Processor shall not be liable for loss of profit. The proof of the damages shall be borne by the Controller.
+13.  ANNEX I
+1. Confidentiality
+i. Access control: The Processor shall ensure that there is no unauthorized access to data processing facilities. 
+* Access control to the data center and to the premises of the Processor or its approved subcontractors, in which the Controllers' data is stored or processed or access data to the same is stored, shall be secured and protected. 
+* Access control: The Processor shall ensure that no unauthorized system use takes place. To this end, it shall take the following measures
+a. Password procedure (including complexity requirements, minimum length (16 characters), regular change of password with history management);
+b. Automatic locking of the login if the password is entered incorrectly 3 times;
+c. 2-factor or multifactor authentication;
+d. Setup one user master record per user;  
+e. Password protection of the data media;
+f. Use of timed screen lock with password protection;
+g. Logging of usage;
+h. If required, encrypted WLAN for internal use, additionally decoupled for guests in DMZ;
+i. Sophisticated firewall concept
+ii. Access control: The Processor shall ensure that no unauthorized reading, copying, modification or removal of the processed personal data takes place within the system. The Processor shall take the following measures.
+a. Determination and control of access authorizations differentiated by data, programs, and access types (authorization concept); 
+b. Timely installation of the necessary security updates; 
+c. Continuous updating of the virus protection; 
+d. Evaluations about accesses; 
+e. Secure management and safekeeping of data media/stocks;
+f. Encryption / tunnel connection (VPN = Virtual Private Network) for restricted group of employees.
+iii. Separation control: The Processor shall ensure that personal data collected for different purposes are processed separately. The Processor shall ensure the implementation of the following measures
+a. "Multi-Controller capability" of the software used;
+b. Separation of functions between production and test.
+iv. Pseudonymization: The processing of personal data in such a way that the data can no longer be at-tributed to a specific data subject without the use of additional information, pro-vided that this additional information is stored separately and is subject to appropriate technical and organizational measures. The Processor shall endeavor to implement pseudonymization procedures where possible and reasonable
+2. Integrity
+i. Transfer control: The Processor shall ensure that personal data are not read, copied, modified or removed without authorization during an electronic transfer or transport. 
+ii. Input control: The Processor shall periodically check whether and by whom personal data have been entered into data processing systems, changed or removed. 
+3. Availability and Resilience
+i. Availability control: The Processor shall ensure that personal data is protected against accidental or deliberate destruction or loss.
+4. Procedures for regular review, assessment, and evaluation
+i. The Processor shall ensure appropriate data protection management and incident response management. 
+ii. Where possible and reasonable, the Processor shall implement data protection-friendly default settings so that as little personal data as possible is processed.
+iii. No data processing is carried out without corresponding instructions from the Controller. 
+
+
