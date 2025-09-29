@@ -73,10 +73,13 @@ class ContractProcessingCrew:
     def build_actor_critic_crew(self, context: Dict[str, Any]) -> Crew:
         """
         Build a crew to run actor-critic workflow sequentially.
-        Similar to Agent-3.0's build_proposal_crew pattern.
+        The critic task will automatically receive the actor's output.
         """
         modification_task = self.tasks.contract_modification_task(context)
         evaluation_task = self.tasks.contract_evaluation_task(context)
+        
+        # Set up task dependencies - critic depends on actor
+        evaluation_task.context = modification_task
         
         return Crew(
             agents=[
@@ -85,6 +88,7 @@ class ContractProcessingCrew:
             ],
             tasks=[modification_task, evaluation_task],
             process=Process.sequential,
+            verbose=True,  # Enable verbose logging to debug workflow
         )
 
     def build_chunk_processing_crew(self, chunk_contexts: List[Dict[str, Any]]) -> List[Crew]:
@@ -173,11 +177,15 @@ class ContractProcessingCrew:
                 'job_id': job_id
             }
             
-            # Run actor-critic crew with timeout protection
+            # Run actor-critic crew with proper context passing
             try:
                 crew = self.build_actor_critic_crew(context)
                 crew_result = crew.kickoff(inputs=context)
                 crew_outputs.append(f"Iteration {iteration}: {str(crew_result)}")
+                
+                # Extract modified RTF and evaluation from crew result
+                modified_rtf, evaluation_result = self._extract_crew_results(crew_result, context)
+                
             except Exception as e:
                 print(f"⚠️ Iteration {iteration} failed: {str(e)}")
                 if iteration == 1:
@@ -186,9 +194,6 @@ class ContractProcessingCrew:
                 else:
                     # Use previous iteration result
                     break
-            
-            # Extract modified RTF and evaluation from crew result
-            modified_rtf, evaluation_result = self._extract_crew_results(crew_result)
             
             if modified_rtf:
                 current_rtf = modified_rtf
@@ -352,7 +357,7 @@ class ContractProcessingCrew:
         
         return processed_chunks
 
-    def _extract_crew_results(self, crew_result) -> Tuple[Optional[str], Optional[Dict]]:
+    def _extract_crew_results(self, crew_result, context=None) -> Tuple[Optional[str], Optional[Dict]]:
         """
         Extract modification and evaluation results from CrewAI output.
         Returns: (modified_rtf, evaluation_dict)
@@ -361,8 +366,8 @@ class ContractProcessingCrew:
             # CrewAI returns results from each task
             # We need to extract the actor's output (modified RTF) and critic's output (evaluation JSON)
             
-            # Default fallback values
-            default_evaluation = {"overall_score": 0.75, "satisfied": True}  # More lenient defaults
+            # Default evaluation should NOT be satisfied to force proper evaluation
+            default_evaluation = {"overall_score": 0.0, "satisfied": False, "unmet_criteria": ["evaluation_failed"]}
             
             if hasattr(crew_result, 'tasks_output') and crew_result.tasks_output:
                 # Extract outputs from individual tasks
@@ -398,33 +403,20 @@ class ContractProcessingCrew:
                 return modified_rtf or result_str, evaluation_data or default_evaluation
             
             else:
-                # Fallback: treat as single string result
+                # Fallback: treat as single string result - this shouldn't happen with proper task setup
                 result_str = str(crew_result)
+                print(f"⚠️ Unexpected crew result format: {type(crew_result)}")
+                print(f"Result content preview: {result_str[:200]}...")
                 
-                # Look for JSON evaluation in the result
-                evaluation_data = default_evaluation  # Start with default
-                if '{' in result_str and '}' in result_str:
-                    try:
-                        json_start = result_str.find('{')
-                        json_end = result_str.rfind('}') + 1
-                        json_str = result_str[json_start:json_end]
-                        evaluation_data = json.loads(json_str)
-                    except json.JSONDecodeError:
-                        pass
-                
-                # Extract modified RTF (content before JSON)
-                modified_rtf = result_str
-                if evaluation_data and '{' in result_str:
-                    json_start = result_str.find('{')
-                    if json_start > 50:  # Reasonable amount of content before JSON
-                        modified_rtf = result_str[:json_start].strip()
-                
-                return modified_rtf or result_str, evaluation_data
+                # Return original RTF and failed evaluation to force next iteration
+                original_rtf = context.get('original_rtf', '') if context else ''
+                return original_rtf, default_evaluation
             
         except Exception as e:
             print(f"Error extracting crew results: {e}")
-            # Return the raw result string as modified RTF with default evaluation
-            return str(crew_result), default_evaluation
+            # Return original RTF and failed evaluation to force debugging
+            original_rtf = context.get('original_rtf', '') if context else str(crew_result)
+            return original_rtf, default_evaluation
 
     def _extract_chunk_result(self, crew_result, original_chunk: str) -> Tuple[str, bool]:
         """

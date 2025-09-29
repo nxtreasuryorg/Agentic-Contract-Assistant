@@ -32,7 +32,6 @@ data/test_data/
 
 # Development files
 .env
-app.py
 
 # Generated and temporary files
 data/uploads/

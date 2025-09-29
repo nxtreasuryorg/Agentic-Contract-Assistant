@@ -22,6 +22,7 @@ langchain-text-splitters>=0.0.1
 
 # API server
 Flask>=3.0
+Flask-CORS>=4.0.0
 gunicorn>=21.2
 Werkzeug>=3.0.0
 

@@ -11,10 +11,12 @@ import json
 import time
 import threading
 import queue
-from datetime import datetime
+from datetime import datetime, timedelta
 from io import BytesIO
+from collections import defaultdict
 import fitz  # PyMuPDF for PDF processing
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from dotenv import load_dotenv
 
 # Import Contract-Agent modules
@@ -34,23 +36,70 @@ app.config['MAX_CONTENT_LENGTH'] = 200 * 1024 * 1024  # 200MB for large contract
 app.config['JSON_AS_ASCII'] = False  # Properly handle Unicode
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0  # Disable caching for large files
 
-# Initialize Contract-Agent components
-print("🚀 Initializing Contract-Agent API Server...")
-memory_storage = MemoryStorage()
-crew_manager = ContractProcessingCrew()
-bedrock_manager = BedrockModelManager()
+# Enable CORS for nxtApp integration
+CORS(app, origins=["*"], 
+     allow_headers=["Content-Type", "Authorization", "X-Requested-With"],
+     methods=["GET", "POST", "OPTIONS", "PUT", "DELETE"])
 
-# Initialize paths
+# Initialize paths first
 script_dir = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLDER = os.path.join(script_dir, "data", "uploads")
 RTF_OUTPUT_FOLDER = os.path.join(script_dir, "data", "generated")
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(RTF_OUTPUT_FOLDER, exist_ok=True)
 
+# Validate critical configuration
+def validate_configuration():
+    """Validate critical configuration before starting server"""
+    issues = []
+    
+    # Check AWS region
+    if not os.getenv('AWS_REGION_NAME'):
+        issues.append("AWS_REGION_NAME not set")
+    
+    # Check model configuration
+    if not os.getenv('CONTRACT_PRIMARY_MODEL'):
+        issues.append("CONTRACT_PRIMARY_MODEL not set")
+    
+    # Check if upload directories are writable
+    try:
+        test_file = os.path.join(UPLOAD_FOLDER, 'test_write.tmp')
+        with open(test_file, 'w') as f:
+            f.write('test')
+        os.remove(test_file)
+    except Exception as e:
+        issues.append(f"Upload folder not writable: {e}")
+    
+    if issues:
+        print("❌ Configuration validation failed:")
+        for issue in issues:
+            print(f"  - {issue}")
+        print("Please fix configuration issues before starting the server.")
+        return False
+    
+    print("✅ Configuration validation passed")
+    return True
+
+# Initialize Contract-Agent components
+print("🚀 Initializing Contract-Agent API Server...")
+
+# Validate configuration first
+if not validate_configuration():
+    exit(1)
+
+memory_storage = MemoryStorage()
+crew_manager = ContractProcessingCrew()
+bedrock_manager = BedrockModelManager()
+
 # Job processing queue and background thread
 job_queue = queue.Queue()
 processing_thread = None
 job_lock = threading.Lock()
+
+# Rate limiting
+rate_limit_requests = defaultdict(list)  # IP -> list of timestamps
+rate_limit_lock = threading.Lock()
+MAX_REQUESTS_PER_HOUR = 20  # Limit to 20 contract processing requests per hour per IP
 
 print(f"📁 Upload folder: {UPLOAD_FOLDER}")
 print(f"📁 RTF output folder: {RTF_OUTPUT_FOLDER}")
@@ -226,6 +275,14 @@ def process_contract():
     Handles file upload + prompt from nxtApp with chunking support.
     """
     try:
+        # Rate limiting check
+        client_ip = request.remote_addr or "unknown"
+        if not check_rate_limit(client_ip):
+            return jsonify({
+                "error": f"Rate limit exceeded. Maximum {MAX_REQUESTS_PER_HOUR} requests per hour.",
+                "success": False
+            }), 429
+        
         # Validate request
         if 'file' not in request.files:
             return jsonify({
@@ -248,12 +305,33 @@ def process_contract():
                 "success": False
             }), 400
         
-        # Validate file type
+        # Enhanced file validation for security
         allowed_extensions = {'.pdf', '.txt', '.rtf'}
         file_ext = os.path.splitext(file.filename)[1].lower()
         if file_ext not in allowed_extensions:
             return jsonify({
                 "error": f"Unsupported file type: {file_ext}. Supported: {', '.join(allowed_extensions)}",
+                "success": False
+            }), 400
+        
+        # Validate file size
+        if file.content_length and file.content_length > app.config['MAX_CONTENT_LENGTH']:
+            return jsonify({
+                "error": "File too large. Maximum size is 200MB.",
+                "success": False
+            }), 413
+        
+        # Validate prompt length and content
+        if len(user_prompt) > 10000:  # Reasonable limit for prompts
+            return jsonify({
+                "error": "Prompt too long. Maximum 10,000 characters.",
+                "success": False
+            }), 400
+        
+        # Basic prompt sanitization
+        if any(char in user_prompt for char in ['<script>', '</script>', 'javascript:', 'data:']):
+            return jsonify({
+                "error": "Invalid characters in prompt.",
                 "success": False
             }), 400
         
@@ -301,6 +379,47 @@ def process_contract():
         }), 500
 
 
+def check_rate_limit(client_ip: str) -> bool:
+    """Check if client IP has exceeded rate limit"""
+    with rate_limit_lock:
+        now = datetime.now()
+        hour_ago = now - timedelta(hours=1)
+        
+        # Clean old requests
+        rate_limit_requests[client_ip] = [
+            req_time for req_time in rate_limit_requests[client_ip] 
+            if req_time > hour_ago
+        ]
+        
+        # Check if under limit
+        if len(rate_limit_requests[client_ip]) >= MAX_REQUESTS_PER_HOUR:
+            return False
+        
+        # Add current request
+        rate_limit_requests[client_ip].append(now)
+        return True
+
+def validate_job_id(job_id: str) -> bool:
+    """Validate job ID format for security"""
+    try:
+        # Check for empty or None
+        if not job_id or not job_id.strip():
+            return False
+        
+        # Check for path traversal attempts
+        if ".." in job_id or "/" in job_id or "\\" in job_id:
+            return False
+        
+        # Check for HTML/script tags
+        if "<" in job_id or ">" in job_id:
+            return False
+        
+        # Check if it's a valid UUID format
+        uuid.UUID(job_id)
+        return True
+    except (ValueError, TypeError):
+        return False
+
 @app.route('/job_status/<job_id>', methods=['GET'])
 def get_job_status(job_id):
     """
@@ -308,6 +427,13 @@ def get_job_status(job_id):
     Returns status, progress, and final RTF if completed.
     """
     try:
+        # Validate job ID format
+        if not validate_job_id(job_id):
+            return jsonify({
+                "error": "Invalid job ID format",
+                "success": False
+            }), 400
+        
         # Get job data from memory storage
         job_data = memory_storage.get_job(job_id)
         
@@ -361,6 +487,13 @@ def get_job_result(job_id):
     Returns detailed processing results and metrics.
     """
     try:
+        # Validate job ID format
+        if not validate_job_id(job_id):
+            return jsonify({
+                "error": "Invalid job ID format",
+                "success": False
+            }), 400
+        
         job_data = memory_storage.get_job(job_id)
         
         if not job_data:
@@ -511,6 +644,14 @@ def request_entity_too_large(error):
         "error": "File too large. Maximum size is 200MB.",
         "success": False
     }), 413
+
+
+@app.errorhandler(429)
+def rate_limit_exceeded(error):
+    return jsonify({
+        "error": f"Rate limit exceeded. Maximum {MAX_REQUESTS_PER_HOUR} requests per hour.",
+        "success": False
+    }), 429
 
 
 @app.errorhandler(500)

@@ -3,13 +3,20 @@
     "actor": {
       "max_chunk_size": 10000,
       "chunk_overlap": 2000,
-      "max_iterations": 2,
+      "max_iterations": 5,
       "chunking_enabled": true,
       "timeout_seconds": 180
     },
     "critic": {
-      "minimum_score": 0.7,
-      "timeout_seconds": 60
+      "minimum_score": 0.85,
+      "timeout_seconds": 60,
+      "evaluation_criteria": {
+        "entity_substitution": {"weight": 0.25},
+        "jurisdiction_transformation": {"weight": 0.20},
+        "liability_reallocation": {"weight": 0.20},
+        "clause_operations": {"weight": 0.20},
+        "legal_coherence": {"weight": 0.15}
+      }
     },
     "bedrock": {
       "request_timeout": 300,

@@ -80,7 +80,8 @@ class ContractTasks:
         Provides structured scoring and feedback for refinement.
         """
         original_rtf = context.get('original_rtf', '')
-        modified_rtf = context.get('modified_rtf', '')
+        # Use current_rtf which gets updated by actor's output
+        modified_rtf = context.get('current_rtf', context.get('modified_rtf', ''))
         user_prompt = context.get('user_prompt', '')
         attempt_number = context.get('attempt_number', 1)
         
