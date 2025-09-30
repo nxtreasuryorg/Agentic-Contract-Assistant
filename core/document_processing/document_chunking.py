@@ -24,13 +24,13 @@ class DocumentChunkingManager:
     - Document reassembly with integrity validation
     """
     
-    def __init__(self, chunk_size: int = 25000, chunk_overlap: int = 5000):
+    def __init__(self, chunk_size: int = 100000, chunk_overlap: int = 10000):
         """
         Initialize the DocumentChunkingManager.
         
         Args:
-            chunk_size: Maximum size of each chunk in characters (default: 25,000)
-            chunk_overlap: Overlap between chunks in characters (default: 5,000)
+            chunk_size: Maximum size of each chunk in characters (default: 100,000)
+            chunk_overlap: Overlap between chunks in characters (default: 10,000)
         """
         self.chunk_size = chunk_size
         self.chunk_overlap = chunk_overlap

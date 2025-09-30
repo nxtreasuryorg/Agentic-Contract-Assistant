@@ -96,10 +96,10 @@ job_queue = queue.Queue()
 processing_thread = None
 job_lock = threading.Lock()
 
-# Rate limiting
-rate_limit_requests = defaultdict(list)  # IP -> list of timestamps
-rate_limit_lock = threading.Lock()
-MAX_REQUESTS_PER_HOUR = 20  # Limit to 20 contract processing requests per hour per IP
+# Rate limiting disabled for comprehensive testing
+# rate_limit_requests = defaultdict(list)  # IP -> list of timestamps
+# rate_limit_lock = threading.Lock()
+# MAX_REQUESTS_PER_HOUR = 20  # Limit to 20 contract processing requests per hour per IP
 
 print(f"📁 Upload folder: {UPLOAD_FOLDER}")
 print(f"📁 RTF output folder: {RTF_OUTPUT_FOLDER}")
@@ -275,13 +275,13 @@ def process_contract():
     Handles file upload + prompt from nxtApp with chunking support.
     """
     try:
-        # Rate limiting check
-        client_ip = request.remote_addr or "unknown"
-        if not check_rate_limit(client_ip):
-            return jsonify({
-                "error": f"Rate limit exceeded. Maximum {MAX_REQUESTS_PER_HOUR} requests per hour.",
-                "success": False
-            }), 429
+        # Rate limiting disabled for comprehensive testing
+        # client_ip = request.remote_addr or "unknown"
+        # if not check_rate_limit(client_ip):
+        #     return jsonify({
+        #         "error": f"Rate limit exceeded. Maximum {MAX_REQUESTS_PER_HOUR} requests per hour.",
+        #         "success": False
+        #     }), 429
         
         # Validate request
         if 'file' not in request.files:
@@ -379,25 +379,26 @@ def process_contract():
         }), 500
 
 
-def check_rate_limit(client_ip: str) -> bool:
-    """Check if client IP has exceeded rate limit"""
-    with rate_limit_lock:
-        now = datetime.now()
-        hour_ago = now - timedelta(hours=1)
-        
-        # Clean old requests
-        rate_limit_requests[client_ip] = [
-            req_time for req_time in rate_limit_requests[client_ip] 
-            if req_time > hour_ago
-        ]
-        
-        # Check if under limit
-        if len(rate_limit_requests[client_ip]) >= MAX_REQUESTS_PER_HOUR:
-            return False
-        
-        # Add current request
-        rate_limit_requests[client_ip].append(now)
-        return True
+# Rate limiting disabled for comprehensive testing
+# def check_rate_limit(client_ip: str) -> bool:
+#     """Check if client IP has exceeded rate limit"""
+#     with rate_limit_lock:
+#         now = datetime.now()
+#         hour_ago = now - timedelta(hours=1)
+#         
+#         # Clean old requests
+#         rate_limit_requests[client_ip] = [
+#             req_time for req_time in rate_limit_requests[client_ip] 
+#             if req_time > hour_ago
+#         ]
+#         
+#         # Check if under limit
+#         if len(rate_limit_requests[client_ip]) >= MAX_REQUESTS_PER_HOUR:
+#             return False
+#         
+#         # Add current request
+#         rate_limit_requests[client_ip].append(now)
+#         return True
 
 def validate_job_id(job_id: str) -> bool:
     """Validate job ID format for security"""
@@ -646,12 +647,13 @@ def request_entity_too_large(error):
     }), 413
 
 
-@app.errorhandler(429)
-def rate_limit_exceeded(error):
-    return jsonify({
-        "error": f"Rate limit exceeded. Maximum {MAX_REQUESTS_PER_HOUR} requests per hour.",
-        "success": False
-    }), 429
+# Rate limiting error handler disabled
+# @app.errorhandler(429)
+# def rate_limit_exceeded(error):
+#     return jsonify({
+#         "error": f"Rate limit exceeded. Maximum {MAX_REQUESTS_PER_HOUR} requests per hour.",
+#         "success": False
+#     }), 429
 
 
 @app.errorhandler(500)

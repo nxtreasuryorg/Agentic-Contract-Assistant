@@ -1,0 +1,35 @@
+{
+  "evaluation_metadata": {
+    "session_id": "f2d66177",
+    "timestamp": "20250930_071554",
+    "evaluator": "PROPER LEDGAR Contract-Agent Benchmark",
+    "total_tests": 1,
+    "evaluation_duration": 41.380349,
+    "contract_specific_prompts": true
+  },
+  "performance_summary": {
+    "success_rate": 1.0,
+    "avg_processing_time": 20.01,
+    "avg_ledgar_score": 0.855,
+    "avg_semantic_accuracy": 0.855,
+    "avg_iterations": 1.0
+  },
+  "detailed_results": [
+    {
+      "test_name": "sample_01_converted_Simple_Modifications",
+      "modification_prompt": "Change the Provider from ABC Solutions Inc. to TechCorp Services Ltd. located at 789 Innovation Drive, San Francisco, CA 94105, and change the jurisdiction from New York to Delaware. Also update the Client address to 321 Corporate Blvd, Miami, FL 33101.",
+      "success": true,
+      "error_message": null,
+      "processing_time": 20.01,
+      "ledgar_score": 0.855,
+      "semantic_accuracy": 0.855,
+      "iterations": 1,
+      "original_length": 1890,
+      "modified_length": 0,
+      "quality_score": 0.855,
+      "session_id": "f2d66177",
+      "timestamp": "2025-09-30T07:16:14.532122",
+      "elapsed_time_from_start": 20.019046
+    }
+  ]
+}

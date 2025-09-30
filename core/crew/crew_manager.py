@@ -307,7 +307,7 @@ class ContractProcessingCrew:
         """
         processed_chunks = []
         max_workers = 5  # Rate limiting for Bedrock API
-        chunk_timeout = 300  # 5 minutes timeout per chunk - reduced for reliability
+        chunk_timeout = 600  # 10 minutes timeout per chunk - increased for large contracts
         
         # Prepare chunk contexts
         chunk_contexts = []

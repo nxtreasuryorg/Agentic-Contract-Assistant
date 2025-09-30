@@ -77,7 +77,7 @@ class BedrockModelManager:
     }
     
     # Request timeout configurations for large contracts
-    REQUEST_TIMEOUT_SECONDS = 180  # 3 minutes for large document processing
+    REQUEST_TIMEOUT_SECONDS = 600  # 10 minutes for large document processing
     
     def __init__(self, 
                  region_name: Optional[str] = None,

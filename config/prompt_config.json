@@ -1,15 +1,15 @@
 {
   "prompt_settings": {
     "actor": {
-      "max_chunk_size": 10000,
-      "chunk_overlap": 2000,
-      "max_iterations": 5,
+      "max_chunk_size": 100000,
+      "chunk_overlap": 10000,
+      "max_iterations": 3,
       "chunking_enabled": true,
-      "timeout_seconds": 180
+      "timeout_seconds": 600
     },
     "critic": {
-      "minimum_score": 0.85,
-      "timeout_seconds": 60,
+      "minimum_score": 0.92,
+      "timeout_seconds": 300,
       "evaluation_criteria": {
         "entity_substitution": {"weight": 0.25},
         "jurisdiction_transformation": {"weight": 0.20},
@@ -19,7 +19,7 @@
       }
     },
     "bedrock": {
-      "request_timeout": 300,
+      "request_timeout": 600,
       "max_retries": 5,
       "retry_delay": 1,
       "rate_limit_delay": 2
