@@ -13,8 +13,8 @@ credentials:
 dataset:
   dataset_dir: converted/rtf
   documents:
-    sample_1: "complex_sample_1.rtf"  # Complex document with cross-references for challenging evaluation
-    sample_2: "sample 2.rtf"
+    sample_1: "legal agreement 2.rtf"  # Hash Blockchain brokerage agreement
+    sample_2: "sample 2.rtf"  # Vespia SaaS Terms & Conditions
 
 # Output configuration
 output:
