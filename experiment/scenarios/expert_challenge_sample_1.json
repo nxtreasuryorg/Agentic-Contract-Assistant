@@ -1,0 +1,143 @@
+{
+  "id": "expert-challenge-sample-1-maximum-difficulty", 
+  "document": "sample_1",
+  "description": "EXTREME DIFFICULTY: Multi-layered contract surgery requiring deep legal reasoning, conditional logic preservation, ambiguous instruction resolution, and perfect cross-reference management. Designed to challenge even the most capable models.",
+  
+  "ambiguous_instructions": {
+    "note": "Models must interpret and resolve ambiguous requirements correctly",
+    "counterparty_transformation": {
+      "primary_entity": "Zenith Capital Management Ltd.",
+      "subsidiary_disclosure": "a wholly owned subsidiary of Alpha Investment Holdings Corp.",
+      "registration_details": {
+        "primary_registration": "ZENG202301234",
+        "parent_registration": "ALPHA987654321", 
+        "jurisdiction": "British Virgin Islands",
+        "licensed_activities": ["investment advisory", "portfolio management", "derivatives trading"]
+      },
+      "complex_address_structure": {
+        "registered_office": "Vistra Corporate Services Centre, Wickhams Cay II, Road Town, Tortola VG1110, British Virgin Islands",
+        "business_address": "Level 42, International Finance Centre, 8 Finance Street, Central, Hong Kong",
+        "service_address": "1 Raffles Place, #20-61, Singapore 048616"
+      },
+      "conditional_requirements": {
+        "if_institutional_client": "use business_address for notices",
+        "if_retail_client": "use service_address for notices", 
+        "if_dispute": "use registered_office for legal process"
+      }
+    }
+  },
+  
+  "legal_engineering_challenges": {
+    "1_entity_substitution_cascade": {
+      "find_replace_all": "Hash Blockchain Limited",
+      "replace_with": "Zenith Capital Management Ltd.",  
+      "include_variations": ["HBL", "Hash Blockchain", "the Company", "the Service Provider"],
+      "maintain_grammatical_forms": ["HBL's", "Company's", "Service Provider's"],
+      "preserve_legal_entity_references": true,
+      "update_defined_terms_section": true
+    },
+    
+    "2_jurisdictional_transformation": {
+      "from_jurisdiction": "Hong Kong",
+      "to_jurisdiction": "British Virgin Islands", 
+      "regulatory_authority_updates": {
+        "from": ["SFC", "Hong Kong Monetary Authority", "HKIAC"],
+        "to": ["BVI Financial Services Commission", "BVI Commercial Court", "LCIA"]
+      },
+      "legal_system_adjustments": {
+        "governing_law": "laws of the British Virgin Islands",
+        "court_jurisdiction": "BVI Commercial Court",
+        "arbitration_rules": "LCIA Arbitration Rules 2020",
+        "service_of_process": "registered office in British Virgin Islands"
+      }
+    },
+    
+    "3_sophisticated_liability_reversal": {
+      "original_protected_party": "HBL",
+      "new_protected_party": "Client",
+      "liability_engineering": {
+        "remove_hbl_liability_caps": "ALL instances including consequential damages",
+        "add_client_liability_caps": "limit Client liability to USD 10,000",
+        "reverse_indemnification_completely": "Client must indemnify HBL for all losses",
+        "insurance_obligations": "Client maintains USD 5M professional indemnity insurance with HBL as beneficiary",
+        "breach_consequences": "Client pays liquidated damages of 10% of transaction value"
+      }
+    },
+    
+    "4_definition_dependency_management": {
+      "update_core_definitions": {
+        "HBL": "means Zenith Capital Management Ltd. (BVI company number ZENG202301234), a company incorporated under the laws of the British Virgin Islands",
+        "Agreement": "means this Brokerage Services Agreement as may be amended in accordance with Clause 6.1",
+        "Governing Law": "means the laws of the British Virgin Islands"
+      },
+      "cascade_definition_updates": "throughout entire document",
+      "alphabetize_definitions": true,
+      "remove_obsolete_definitions": ["Hong Kong", "HKIAC Rules"],
+      "add_new_definitions": ["BVI Laws", "LCIA Rules", "Professional Indemnity Insurance"]
+    }
+  },
+  
+  "clause_surgical_operations": [
+    {
+      "operation": "insert_complex_clause",
+      "target": "after_section_2.2",
+      "new_clause_number": "2.3",
+      "cascade_renumbering": "required_throughout_document",
+      "rtf_content": "{\\rtf1\\ansi\\b 2.3. Sophisticated Risk Allocation Matrix.\\b0\\par (a) Notwithstanding any other provision in this Agreement or any related documentation, the Client acknowledges and agrees that it assumes all risks associated with: (i) market volatility exceeding 15% in any 24-hour period; (ii) regulatory changes in any jurisdiction affecting virtual asset trading; (iii) technology failures or cybersecurity incidents; and (iv) counterparty defaults by third-party service providers.\\par (b) The Client shall maintain at all times professional indemnity insurance of not less than USD 5,000,000 with Zenith Capital Management Ltd. named as additional insured and loss payee.\\par (c) Any breach of this Clause 2.3 shall constitute a material default entitling Zenith to immediate termination and recovery of all costs, damages, and legal fees.}",
+      "cross_reference_updates": {
+        "add_references_to": ["Clause 4.1(b)", "Clause 5.2", "Clause 6.1"],
+        "update_dependent_clauses": ["material breach definition", "termination triggers"]
+      }
+    },
+    {
+      "operation": "delete_with_dependencies", 
+      "target": "Clause 5.1 HBL's Limitation of Liability",
+      "cascade_effects": {
+        "renumber_subsequent_clauses": true,
+        "update_all_cross_references": ["Clause 1.1", "Clause 4.1(a)", "Clause 7.1"],
+        "remove_dependent_definitions": ["Consequential Damages", "Liability Cap"],
+        "update_calculation_formulas": "any references to liability caps"
+      }
+    },
+    {
+      "operation": "replace_with_conditional_logic",
+      "target": "Clause 6.3 Dispute Resolution", 
+      "new_content": "{\\rtf1\\ansi\\b 6.3. Tiered Dispute Resolution.\\b0\\par (a) For disputes involving amounts less than USD 100,000: binding arbitration under LCIA Rules with single arbitrator in British Virgin Islands.\\par (b) For disputes involving amounts of USD 100,000 or more: litigation in BVI Commercial Court with right of appeal.\\par (c) For regulatory disputes: subject to BVI Financial Services Commission jurisdiction with concurrent LCIA arbitration for commercial aspects.\\par (d) Service of process shall be effective upon delivery to the registered office address specified in the definition of Zenith Capital Management Ltd.}",
+      "dependency_updates": {
+        "modify_service_clauses": "update all process service requirements",
+        "adjust_notice_provisions": "align with new dispute resolution framework", 
+        "update_governing_law_references": "ensure consistency with BVI law choice"
+      }
+    }
+  ],
+  
+  "precision_requirements": {
+    "cross_reference_accuracy": "99.9%_required",
+    "definition_consistency": "zero_tolerance_for_errors",
+    "numbering_cascade": "perfect_hierarchical_maintenance",
+    "grammatical_consistency": "all_possessive_forms_correct",
+    "legal_terminology": "jurisdiction_specific_language_required"
+  },
+  
+  "acceptance_criteria": {
+    "thresholds": { "overall_score_min": 0.95 },
+    "required_criteria": [
+      "entity_substitution_perfect",
+      "cross_reference_integrity_flawless", 
+      "liability_reversal_complete",
+      "definition_management_accurate",
+      "jurisdictional_transformation_correct",
+      "conditional_logic_preserved",
+      "legal_structure_maintained"
+    ],
+    "criteria": {
+      "entity_substitution_perfect": {"weight": 0.20, "deduction_per_error": 0.1},
+      "cross_reference_integrity_flawless": {"weight": 0.20, "deduction_per_error": 0.15},
+      "liability_reversal_complete": {"weight": 0.15, "deduction_per_error": 0.2},
+      "definition_management_accurate": {"weight": 0.15, "deduction_per_error": 0.1},
+      "jurisdictional_transformation_correct": {"weight": 0.10, "deduction_per_error": 0.1},
+      "conditional_logic_preserved": {"weight": 0.10, "deduction_per_error": 0.15},
+      "legal_structure_maintained": {"weight": 0.10, "deduction_per_error": 0.25}
+    }
+  }
+}

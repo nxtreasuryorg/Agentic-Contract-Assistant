@@ -1,0 +1,152 @@
+{
+  "scenario_name": "Comprehensive Semantic Manipulation Test",
+  "scenario_description": "Advanced test covering counterparty change, legal domicile shift, liability reallocation, and clause operations",
+  "legal_engineering_challenges": {
+    "1_entity_substitution_cascade": {
+      "find_replace_all": "Hash Blockchain Limited",
+      "replace_with": "Digital Finance Corp",
+      "include_variations": ["HBL", "Hash Blockchain", "the Company"],
+      "requirements": [
+        "Replace all entity name variations throughout document",
+        "Update signature blocks and contact information",
+        "Maintain grammatical consistency (e.g., 'HBL's' becomes 'Digital Finance Corp's')"
+      ]
+    },
+    "2_jurisdictional_transformation": {
+      "from_jurisdiction": "Hong Kong",
+      "to_jurisdiction": "Singapore",
+      "update_requirements": [
+        "Change governing law from Hong Kong to Singapore",
+        "Update dispute resolution from HKIAC to SIAC (Singapore International Arbitration Centre)",
+        "Change arbitration venue from Hong Kong to Singapore",
+        "Update all Hong Kong references to Singapore"
+      ]
+    },
+    "3_governing_law_transformation": {
+      "from_governing_law": "laws of Hong Kong",
+      "to_governing_law": "laws of Singapore",
+      "venue_changes": {
+        "from_venue": "Hong Kong",
+        "to_venue": "Singapore"
+      }
+    },
+    "4_definition_dependency_management": {
+      "update_core_definitions": {
+        "HBL": "Digital Finance Corp (Singapore company registration number 202301234A), a company incorporated under the laws of Singapore"
+      },
+      "add_new_definitions": {
+        "Singapore Regulations": "means the regulations issued by the Monetary Authority of Singapore from time to time"
+      }
+    },
+    "5_liability_reallocation": {
+      "shift_liability_from_to": [
+        {
+          "from_party": "HBL",
+          "to_party": "Client",
+          "liability_type": "indemnification",
+          "description": "Reverse indemnification - Client now indemnifies Digital Finance Corp instead of vice versa",
+          "new_clause_text": "Digital Finance Corp shall indemnify, defend, and hold harmless the Client and its affiliates from and against any and all claims, damages, losses, costs, and expenses arising from Digital Finance Corp's breach of this Agreement or violation of applicable laws."
+        },
+        {
+          "from_party": "Client",
+          "to_party": "HBL", 
+          "liability_type": "limitation",
+          "description": "Remove Client's liability limitations and impose on Digital Finance Corp",
+          "new_clause_text": "The Client's total liability to Digital Finance Corp shall not exceed the amount of fees paid by Digital Finance Corp to the Client in the twelve months preceding the claim."
+        }
+      ]
+    },
+    "6_clause_modifications": {
+      "add_clauses": [
+        {
+          "clause_id": "data_protection",
+          "title": "7.3 Data Protection",
+          "required_text": "Digital Finance Corp shall comply with all applicable data protection laws in Singapore, including the Personal Data Protection Act 2012. All personal data collected shall be processed in accordance with Singapore privacy regulations.",
+          "position": "after_clause_7.2"
+        },
+        {
+          "clause_id": "regulatory_compliance",
+          "title": "7.4 Regulatory Compliance", 
+          "required_text": "Digital Finance Corp acknowledges that it is subject to the supervision of the Monetary Authority of Singapore and shall maintain all required licenses and registrations under Singapore law.",
+          "position": "after_clause_7.3"
+        }
+      ],
+      "delete_clauses": [
+        {
+          "clause_id": "client_indemnification",
+          "text_to_remove": "The Client shall indemnify, defend, and hold harmless HBL and its affiliates, officers, directors, employees, and agents from and against any and all claims, damages, losses, costs, and expenses (including reasonable legal fees) arising from or related to the Client's breach of this Agreement as referenced in Clause 4.1 or violation of applicable laws."
+        }
+      ],
+      "modify_clauses": [
+        {
+          "clause_id": "hbl_limitation",
+          "old_text": "HBL shall not be liable to the Client for any indirect, incidental, special, consequential, or punitive damages",
+          "new_text": "The Client shall not be liable to Digital Finance Corp for any indirect, incidental, special, consequential, or punitive damages",
+          "rationale": "Reverse liability limitation from company to client"
+        }
+      ]
+    },
+    "7_party_role_changes": {
+      "transform_roles": [
+        {
+          "party": "HBL",
+          "from_role": "service_provider",
+          "to_role": "service_recipient", 
+          "description": "Digital Finance Corp becomes the party receiving services rather than providing them"
+        }
+      ]
+    },
+    "8_address_and_contact_updates": {
+      "update_company_details": {
+        "new_address": "1 Raffles Place, #40-02, One Raffles Place, Singapore 048616",
+        "new_email": "legal@digitalfinance.sg",
+        "new_director": "Sarah Tan",
+        "new_title": "Managing Director"
+      }
+    }
+  },
+  "ambiguous_instructions": {
+    "counterparty_transformation": {
+      "description": "Transform the counterparty while maintaining legal validity",
+      "registration_details": {
+        "primary_registration": "202301234A",
+        "jurisdiction": "Singapore",
+        "regulatory_body": "Monetary Authority of Singapore"
+      }
+    }
+  },
+  "acceptance_criteria": {
+    "thresholds": {
+      "overall_score_min": 0.85
+    },
+    "required_criteria": [
+      "entity_substitution_complete",
+      "jurisdiction_transformed", 
+      "liability_reallocation_correct",
+      "clause_operations_successful",
+      "legal_coherence_maintained"
+    ],
+    "criteria": {
+      "entity_substitution_complete": {
+        "weight": 0.25,
+        "description": "All entity references updated correctly"
+      },
+      "jurisdiction_transformed": {
+        "weight": 0.20,
+        "description": "Governing law and venue properly changed to Singapore"
+      },
+      "liability_reallocation_correct": {
+        "weight": 0.20,
+        "description": "Liability clauses properly reversed between parties"
+      },
+      "clause_operations_successful": {
+        "weight": 0.20,
+        "description": "Clauses added, deleted, and modified as specified"
+      },
+      "legal_coherence_maintained": {
+        "weight": 0.15,
+        "description": "Document maintains legal consistency and enforceability"
+      }
+    }
+  }
+}

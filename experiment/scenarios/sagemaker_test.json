@@ -1,0 +1,18 @@
+{
+  "id": "sagemaker-endpoint-test",
+  "document": "sample_1",
+  "description": "Simple test for SageMaker endpoint - minimal changes to test model capability",
+  "counterparty_update": {
+    "name": "Test Client Inc.",
+    "registration_code": "TC-2025-001",
+    "address": "123 Test Street, Test City",
+    "email": "test@client.com"
+  },
+  "acceptance_criteria": {
+    "thresholds": { "overall_score_min": 0.70 },
+    "required_criteria": ["instruction_followed"],
+    "criteria": {
+      "instruction_followed": {"weight": 1.0}
+    }
+  }
+}

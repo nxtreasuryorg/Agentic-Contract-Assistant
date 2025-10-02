@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contract Manipulation Scenario Schema",
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "document": {"type": "string", "enum": ["sample_1", "sample_2"]},
+    "description": {"type": "string"},
+    "counterparty_update": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "registration_code": {"type": "string"},
+        "vat": {"type": "string"},
+        "address": {"type": "string"},
+        "email": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "domicile_shift": {
+      "type": "object",
+      "properties": {
+        "governing_law": {"type": "string"},
+        "venue": {"type": "string"},
+        "arbitration_body": {"type": "string"},
+        "arbitration_rules": {"type": "string"}
+      },
+      "additionalProperties": false
+    },
+    "blame_shift": {
+      "type": "object",
+      "properties": {
+        "from_party": {"type": "string"},
+        "to_party": {"type": "string"},
+        "clauses": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": false
+    },
+    "clause_add": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tag": {"type": "string"},
+          "insert_after_section": {"type": "string"},
+          "rtf_text": {"type": "string"}
+        },
+        "required": ["tag", "insert_after_section", "rtf_text"],
+        "additionalProperties": false
+      }
+    },
+    "clause_delete": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "section": {"type": "string"},
+          "reason": {"type": "string"}
+        },
+        "required": ["section"],
+        "additionalProperties": false
+      }
+    },
+    "acceptance_criteria": {
+      "type": "object",
+      "properties": {
+        "thresholds": {
+          "type": "object",
+          "properties": {"overall_score_min": {"type": "number"}},
+          "additionalProperties": true
+        },
+        "required_criteria": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "criteria": {"type": "object"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

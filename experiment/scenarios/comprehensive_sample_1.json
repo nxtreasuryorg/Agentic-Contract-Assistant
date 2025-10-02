@@ -1,0 +1,56 @@
+{
+  "id": "comprehensive-sample-1-all-manipulations",
+  "document": "sample_1",
+  "description": "Comprehensive test: counterparty update, domicile shift, blame shift from HBL to client, clause add/delete. Tests all semantic manipulation capabilities.",
+  "counterparty_update": {
+    "name": "Global Trading Corp Ltd.",
+    "registration_code": "GTC-2025-789",
+    "vat": "GB123456789",
+    "address": "Tower Bridge House, London EC1N 2LE, United Kingdom", 
+    "email": "contracts@globaltrading.co.uk"
+  },
+  "domicile_shift": {
+    "governing_law": "England and Wales",
+    "venue": "London, England",
+    "arbitration_body": "LCIA",
+    "arbitration_rules": "LCIA Arbitration Rules"
+  },
+  "blame_shift": {
+    "from_party": "HBL",
+    "to_party": "Client", 
+    "clauses": [
+      "liability",
+      "indemnity",
+      "risk_allocation"
+    ]
+  },
+  "clause_add": [
+    {
+      "tag": "DataProtection",
+      "insert_after_section": "4. Representations, Warranties and Undertakings",
+      "rtf_text": "{\\rtf1\\ansi\\b 4.2 Data Protection.\\b0 The Client shall comply with all applicable data protection laws and shall indemnify HBL against any data protection violations.}"
+    },
+    {
+      "tag": "ComplianceObligation", 
+      "insert_after_section": "3. Brokerage Services",
+      "rtf_text": "{\\rtf1\\ansi\\b 3.2 Client Compliance.\\b0 The Client assumes full responsibility for compliance with all applicable regulations and shall bear all associated costs and liabilities.}"
+    }
+  ],
+  "clause_delete": [
+    { 
+      "section": "5.1. Amendment", 
+      "reason": "Remove HBL's unilateral amendment rights to shift control to Client" 
+    }
+  ],
+  "acceptance_criteria": {
+    "thresholds": { "overall_score_min": 0.80 },
+    "required_criteria": ["instruction_followed", "blame_shift_applied"],
+    "criteria": {
+      "instruction_followed": {"weight": 0.3},
+      "numbering_and_refs_consistent": {"weight": 0.2},
+      "governing_law_and_venue_consistent": {"weight": 0.15},
+      "liability_and_indemnity_consistent": {"weight": 0.2},
+      "blame_shift_applied": {"weight": 0.15}
+    }
+  }
+}

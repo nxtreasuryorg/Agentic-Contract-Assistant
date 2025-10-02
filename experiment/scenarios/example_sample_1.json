@@ -1,0 +1,38 @@
+{
+  "id": "example-sample-1-domicile-and-entity",
+  "document": "sample_1",
+  "description": "Change counterparty details and shift governing law/venue; ensure numbering/cross-refs remain consistent.",
+  "counterparty_update": {
+    "name": "Example Client Ltd.",
+    "registration_code": "RC-EX-2025-001",
+    "vat": "N/A",
+    "address": "1 Marina Blvd, Singapore 018989",
+    "email": "legal@exampleclient.com"
+  },
+  "domicile_shift": {
+    "governing_law": "Singapore",
+    "venue": "Singapore",
+    "arbitration_body": "SIAC",
+    "arbitration_rules": "SIAC Rules"
+  },
+  "clause_add": [
+    {
+      "tag": "DataProtection",
+      "insert_after_section": "4. Representations, Warranties and Undertakings",
+      "rtf_text": "{\\rtf1\\ansi\\b Data Protection.\\b0 The Parties shall comply with all applicable data protection laws.}"
+    }
+  ],
+  "clause_delete": [
+    { "section": "5.1. Amendment", "reason": "Scenario tests delete handling and renumbering." }
+  ],
+  "acceptance_criteria": {
+    "thresholds": { "overall_score_min": 0.85 },
+    "required_criteria": ["instruction_followed"],
+    "criteria": {
+      "instruction_followed": {"weight": 0.5},
+      "numbering_and_refs_consistent": {"weight": 0.2},
+      "governing_law_and_venue_consistent": {"weight": 0.15},
+      "liability_and_indemnity_consistent": {"weight": 0.15}
+    }
+  }
+}

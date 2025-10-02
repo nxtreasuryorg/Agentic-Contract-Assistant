@@ -1,0 +1,143 @@
+{
+  "id": "semantic-manipulation-advanced",
+  "document": "sample_1",
+  "description": "ADVANCED SEMANTIC MANIPULATION: Comprehensive contract transformation including counterparty changes, legal domicile shifts, liability reallocation, and clause modifications. Tests full spectrum of legal semantic understanding.",
+  
+  "legal_engineering_challenges": {
+    "1_entity_substitution_cascade": {
+      "find_replace_all": "Hash Blockchain Limited",
+      "replace_with": "Sterling Financial Corp",
+      "include_variations": ["HBL", "Hash Blockchain", "the Company"],
+      "maintain_grammatical_forms": ["HBL's", "Company's", "Sterling's"],
+      "preserve_legal_entity_references": true,
+      "update_defined_terms_section": true
+    },
+    
+    "2_jurisdictional_transformation": {
+      "from_jurisdiction": "Hong Kong",
+      "to_jurisdiction": "Cayman Islands",
+      "update_all_references": true,
+      "include_court_references": true
+    },
+    
+    "3_governing_law_transformation": {
+      "from_governing_law": "Hong Kong",
+      "to_governing_law": "Cayman Islands",
+      "from_venue": "Hong Kong courts",
+      "to_venue": "Cayman Islands courts",
+      "update_dispute_resolution": true
+    },
+    
+    "4_definition_dependency_management": {
+      "update_core_definitions": {
+        "HBL": "means Sterling Financial Corp (Cayman Islands company number CAY789012), a company incorporated under the laws of the Cayman Islands"
+      },
+      "cascade_definition_updates": "throughout entire document"
+    },
+    
+    "5_liability_reallocation": {
+      "shift_liability_from_to": [
+        {
+          "from_party": "HBL",
+          "to_party": "Client", 
+          "liability_type": "general",
+          "scope": "all liability clauses"
+        },
+        {
+          "from_party": "Sterling Financial Corp",
+          "to_party": "Client",
+          "liability_type": "operational",
+          "scope": "operational risk clauses"  
+        }
+      ]
+    },
+    
+    "6_clause_modifications": {
+      "add_clauses": [
+        {
+          "clause_id": "force_majeure",
+          "required_text": "Force Majeure: Neither party shall be liable for delays or failures in performance resulting from acts beyond reasonable control.",
+          "insertion_point": "after liability section"
+        },
+        {
+          "clause_id": "data_protection",
+          "required_text": "Data Protection: All parties must comply with applicable data protection regulations including GDPR.",
+          "insertion_point": "before governing law"
+        }  
+      ],
+      "delete_clauses": [
+        {
+          "clause_id": "hbl_protections",
+          "text_to_remove": "HBL shall not be liable to the Client for any indirect, incidental, special, consequential, or punitive damages"
+        }
+      ],
+      "modify_clauses": [
+        {
+          "clause_id": "limitation_of_liability",
+          "old_text": "HBL's total liability to the Client shall not exceed",
+          "new_text": "Client's total liability to Sterling Financial Corp shall not exceed"
+        }
+      ]
+    },
+    
+    "7_party_role_changes": {
+      "transform_roles": [
+        {
+          "party": "Sterling Financial Corp",
+          "from_role": "service provider",
+          "to_role": "client",
+          "update_throughout": true
+        },
+        {
+          "party": "Client", 
+          "from_role": "client",
+          "to_role": "service provider",
+          "update_throughout": true
+        }
+      ]
+    }
+  },
+  
+  "ambiguous_instructions": {
+    "note": "Models must interpret complex semantic transformations correctly",
+    "counterparty_transformation": {
+      "primary_entity": "Sterling Financial Corp",
+      "subsidiary_disclosure": "a wholly owned subsidiary of Global Investment Holdings Ltd.",
+      "registration_details": {
+        "primary_registration": "CAY789012",
+        "parent_registration": "GIH456789",
+        "jurisdiction": "Cayman Islands",
+        "licensed_activities": ["financial services", "investment management", "derivatives trading"]
+      },
+      "legal_domicile_shift": {
+        "from": "Hong Kong Special Administrative Region",
+        "to": "Cayman Islands",
+        "implications": "All legal references must be updated consistently"
+      },
+      "liability_philosophy": "Shift primary legal responsibility from original service provider to client"
+    }
+  },
+  
+  "acceptance_criteria": {
+    "thresholds": { "overall_score_min": 0.85 },
+    "required_criteria": [
+      "entity_substitution_complete",
+      "registration_number_present", 
+      "governing_law_transformed",
+      "liability_shifted_general",
+      "clause_added_force_majeure",
+      "clause_deleted_hbl_protections"
+    ],
+    "criteria": {
+      "entity_substitution_complete": {"weight": 0.15, "deduction_per_error": 0.3},
+      "registration_number_present": {"weight": 0.15, "deduction_per_error": 0.3},
+      "governing_law_transformed": {"weight": 0.15, "deduction_per_error": 0.3},
+      "venue_transformed": {"weight": 0.10, "deduction_per_error": 0.2},
+      "liability_shifted_general": {"weight": 0.15, "deduction_per_error": 0.3},
+      "clause_added_force_majeure": {"weight": 0.10, "deduction_per_error": 0.2},
+      "clause_added_data_protection": {"weight": 0.05, "deduction_per_error": 0.1},
+      "clause_deleted_hbl_protections": {"weight": 0.10, "deduction_per_error": 0.2},
+      "clause_modified_limitation_of_liability": {"weight": 0.05, "deduction_per_error": 0.1}
+    }
+  }
+}

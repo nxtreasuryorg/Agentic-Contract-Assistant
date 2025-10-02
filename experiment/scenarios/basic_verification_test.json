@@ -1,0 +1,47 @@
+{
+  "id": "basic-verification-test",
+  "document": "sample_1",
+  "description": "SIMPLE TEST: Basic entity substitution to validate programmatic verification works correctly and catches judge hallucinations",
+  
+  "legal_engineering_challenges": {
+    "1_entity_substitution_cascade": {
+      "find_replace_all": "Hash Blockchain Limited",
+      "replace_with": "TESTCORP Ltd.",
+      "include_variations": ["HBL", "Hash Blockchain", "the Company"],
+      "maintain_grammatical_forms": ["HBL's", "Company's"],
+      "preserve_legal_entity_references": true,
+      "update_defined_terms_section": true
+    },
+    
+    "4_definition_dependency_management": {
+      "update_core_definitions": {
+        "HBL": "means TESTCORP Ltd. (BVI company number TEST123456), a company incorporated under the laws of the British Virgin Islands"
+      },
+      "cascade_definition_updates": "throughout entire document"
+    }
+  },
+  
+  "ambiguous_instructions": {
+    "counterparty_transformation": {
+      "primary_entity": "TESTCORP Ltd.",
+      "registration_details": {
+        "primary_registration": "TEST123456",
+        "jurisdiction": "British Virgin Islands"
+      }
+    }
+  },
+  
+  "acceptance_criteria": {
+    "thresholds": { "overall_score_min": 0.8 },
+    "required_criteria": [
+      "entity_substitution_basic",
+      "registration_number_present",
+      "no_empty_output"
+    ],
+    "criteria": {
+      "entity_substitution_basic": {"weight": 0.5, "deduction_per_error": 0.2},
+      "registration_number_present": {"weight": 0.3, "deduction_per_error": 0.3},
+      "no_empty_output": {"weight": 0.2, "deduction_per_error": 1.0}
+    }
+  }
+}

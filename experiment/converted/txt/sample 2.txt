@@ -1,0 +1,70 @@
+Docusign Envelope ID: 8B644DEF-B02C-4A26-A4E7-6FB00630DB3D
+
+
+
+
+                                                       TERMS AND CONDITIONS
+
+
+               The terms and conditions (hereinafter the “T&C”) set forth herein shall govern all and any use of the
+               Solution (as defined in Section 1.5.), therefore please read the T&C carefully as by using our
+               Solution the Client (as defined below) acknowledges that they have read, understood and agreed to
+               be legally bound by these.
+
+               The T&C set forth herein form a legally binding contract between:
+
+               (1) Vespia OÜ (as defined below; hereinafter “Vespia”)
+
+               and
+
+               (2) Company name           NxTreasury Private Limited
+
+                                          75683209-000-09-24-2
+               registration code:
+
+               VAT nr:                    N/A
+
+               registered address:        9F, Sun House, 181 Des Voeux Rd Central, Sheung Wan, Hong Kong
+
+               email:                    atul@nxtreasury.com
+
+                                         atul@nxtreasury.com
+               billing email:
+
+               (hereinafter the “Client”).
+
+               The T&C explains how the Client is permitted to use the Solution (as defined in Section 1.5.). A more
+               detailed description of the Solution can be found below under the section ‘Nature of Solution’.
+
+
+               1.        ​   DEFINITIONS
+
+               The expressions indicated hereunder shall have the following meaning in the present T&C and in
+               relation to it, the words used in the T&C in the singular shall also mean the plural and vice versa, and
+               the words in the masculine gender shall also mean the feminine gender and vice versa.
+
+               1.1.​         Access Data – information needed to access the Client’s user account as made available
+                             by Vespia;
+
+               1.2.​         Client – a natural or legal person who has signed the T&C with Vespia or accepted the
+                             T&C, as the case may be;
+
+               1.3.​         Client’s customer – a customer, partner, supplier, merchant, investor, or another legal or
+                             natural person whom the Client wishes to verify via using of the Solution;
+
+               1.4.​         Client Data – any and all information (incl. Personal Data) uploaded to or obtained via the
+                             use of the Solution or otherwise made available to Vespia by the Client (incl. its employees,
+                             legal or authorised representatives) or the Client's customer, as the case may be, and
+                             regardless of the format of such information;
+
+               1.5.​         Solution – Vespia’s software as a service solution, digital solutions for verifying and
+                             onboarding legal and private entities with the aim to minimise the risk of fraud and staying
+                             compliant with AML regulations, as well as building trust. The Solution includes the Vespia
+                             Dashboard, Vespia Passport, Vespia API, Vespia Onboarding Flow (SDK), Vespia
+                             Compliance Officer as a Service, white label, monitoring, customization, and other AML
+                             compliance solutions as may be added or removed from the Solution from time to time.
+                             The Solution will be available to the Client in the extent of the chosen subscription
+                             package.
+
+                                                                                                                   1
+

@@ -1,0 +1,98 @@
+# Dynamic configuration for contract manipulation evaluation (no hardcoded values in code)
+
+# Where to load environment variables (AWS credentials, region, etc.)
+credentials:
+  dotenv_path: ../Agent-3.0/.env
+
+# Dataset configuration
+# Provide RTF file names that exist under dataset_dir for each sample key
+# These map to the prompts:
+#   sample_1_*: brokerage agreement
+#   sample_2_*: SaaS Terms & Conditions
+
+dataset:
+  dataset_dir: converted/rtf
+  documents:
+    sample_1: "complex_sample_1.rtf"  # Complex document with cross-references for challenging evaluation
+    sample_2: "sample 2.rtf"
+
+# Output configuration
+output:
+  results_dir: results
+  report_filename: report
+  brief_report: true
+  formats: [rtf, md]  # Generate both RTF and MD reports
+
+# Prompts mapping
+prompts:
+  sample_1:
+    generate: prompts/sample_1_generate.jinja
+    judge: prompts/sample_1_judge.jinja
+    revise: prompts/sample_1_revise.jinja
+  sample_2:
+    generate: prompts/sample_2_generate.jinja
+    judge: prompts/sample_2_judge.jinja
+    revise: prompts/sample_2_revise.jinja
+
+# Judge/critic loop settings
+judge:
+  model_id: "us.amazon.nova-pro-v1:0"
+  thresholds:
+    overall_score_min: 0.85
+    required_criteria:
+      - instruction_followed
+  max_attempts: 5
+  timeout_s: 120
+
+# Models roster (edit as needed). Each entry must declare a provider.
+# Supported providers in this experiment: bedrock (via Converse API), sagemaker_endpoint (deployed endpoint name required)
+# NOTE: Only accessible models included after testing - many require inference profiles or have regional restrictions
+models:
+  # AI21 Labs Models (✅ Accessible)
+  - id: "ai21.jamba-1-5-large-v1:0"
+    provider: bedrock
+  - id: "ai21.jamba-1-5-mini-v1:0"
+    provider: bedrock
+  
+  # Amazon Titan Models (✅ Accessible)
+  - id: "amazon.titan-text-premier-v1:0"
+    provider: bedrock
+  - id: "amazon.titan-text-express-v1"
+    provider: bedrock
+  
+  # Mistral Models (✅ Accessible - only 2402 version works)
+  - id: "mistral.mistral-large-2402-v1:0"
+    provider: bedrock
+  
+  # SageMaker endpoint from your original requirements (uncomment when endpoint is deployed)
+  # - id: "huggingface-textgeneration-dolly-v2-7b-bf16"
+  #   provider: sagemaker_endpoint
+  #   endpoint_name: "huggingface-textgeneration-dolly-v2-7b-bf16-endpoint"
+
+# NOTE: The following models are NOT accessible in this environment:
+# - Anthropic Claude models: Require inference profiles or regional restrictions 
+# - Cohere models: Access denied
+# - Meta Llama models: Require inference profiles
+# - Newer Mistral models: Invalid model IDs
+
+# Timeouts and parallelism
+runtime:
+  generation_timeout_s: 180
+  judge_timeout_s: 180
+  parallel_models: 1
+
+# Acceptance criteria template (can be overridden per-scenario)
+acceptance_criteria:
+  thresholds:
+    overall_score_min: 0.85
+  required_criteria:
+    - instruction_followed
+  criteria:
+    instruction_followed:
+      weight: 0.5
+    numbering_and_refs_consistent:
+      weight: 0.2
+    governing_law_and_venue_consistent:
+      weight: 0.15
+    liability_and_indemnity_consistent:
+      weight: 0.15

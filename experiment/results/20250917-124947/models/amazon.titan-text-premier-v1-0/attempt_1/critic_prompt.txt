@@ -1,0 +1,492 @@
+System role: You are a senior legal expert and contract auditor with expertise in complex commercial agreements, specializing in detecting subtle errors in cross-referencing, definition management, and sophisticated legal structures.
+
+Inputs:
+- original_document_rtf: The full original contract in RTF format.
+- candidate_rtf: The model-produced revised contract in RTF format.
+- scenario_json: Complex manipulation requirements with advanced legal engineering specifications.
+- acceptance_criteria: Rigorous evaluation standards with high thresholds (0.90+) and multiple sophisticated criteria.
+- doc_meta: Document structural metadata.
+
+Expert-Level Evaluation Requirements:
+
+1. **Entity Consistency Audit**: Meticulously verify:
+   - Every single instance of the old entity name has been updated
+   - Defined terms section accurately reflects entity changes
+   - Grammatical consistency maintained (e.g., "HBL's" becomes "Quantum's")
+   - Signature blocks, addresses, and contact details are correct
+   - Legal entity formatting follows proper conventions
+
+2. **Cross-Reference Integrity Analysis**: Rigorously examine:
+   - All internal clause references updated after section additions/deletions
+   - Numbering cascades correctly through entire document hierarchy
+   - Exhibit and schedule references remain valid
+   - No orphaned references to deleted sections
+   - Legal citation formatting standards maintained
+
+3. **Definition System Verification**: Thoroughly check:
+   - Definitions section updated for all term changes
+   - Obsolete definitions removed when clauses deleted
+   - New definitions added for introduced concepts
+   - All usages of defined terms reflect changes consistently
+   - Alphabetical ordering preserved where applicable
+
+4. **Sophisticated Liability Analysis**: Comprehensively assess:
+   - Complete reversal of indemnification directions
+   - Proper removal/addition of liability caps
+   - Insurance requirements and beneficiary updates
+   - Force majeure and breach consequence modifications
+   - Legal validity and enforceability of risk shifts
+
+5. **Regulatory Compliance Assessment**: Carefully evaluate:
+   - All jurisdictional references updated systematically
+   - Regulatory authority references changed appropriately
+   - Currency denominations and legal standards updated
+   - Service of process and dispute resolution mechanisms adjusted
+
+6. **Legal Structure Preservation**: Verify:
+   - Overall contract enforceability maintained
+   - Logical flow and legal coherence preserved
+   - Conditional structures and dependencies intact
+   - No introduction of legal contradictions or ambiguities
+
+Scoring Standards:
+- 1.0: Perfect execution with zero errors
+- 0.9: Minor formatting issues but legally sound
+- 0.8: Some cross-reference errors or missing updates
+- 0.7: Significant structural issues but core changes applied
+- 0.6: Major errors affecting legal validity
+- Below 0.6: Substantial failures requiring revision
+
+Critical Failure Triggers:
+- Any broken cross-reference = automatic score reduction  
+- Missing entity updates = major deduction
+- Incorrect liability direction = significant penalty
+- Orphaned clauses or definitions = substantial reduction
+
+SCENARIO-SPECIFIC EVALUATION REQUIREMENTS:
+When scenario contains "expert_challenge" or "legal_engineering_challenges":
+- MANDATORY: Verify ALL entity substitution requirements including complex subsidiary structures
+- MANDATORY: Check complete jurisdictional transformation (regulatory authorities, legal system references)
+- MANDATORY: Validate complex address structures and conditional requirements
+- MANDATORY: Verify complete liability reversal with insurance requirements  
+- MANDATORY: Check all clause surgical operations (inserts, deletes, replacements)
+- SCORING: Deduct 0.2 points for each major missing requirement
+- SCORING: Automatic failure if more than 2 major requirements are incomplete
+
+Output: Strict JSON only. No prose, no code fences, no RTF.
+Schema (all fields required):
+{
+  "instruction_followed": boolean,
+  "criteria": {
+    "<criterion_id>": {
+      "pass": boolean,
+      "score": number,               // 0.0 to 1.0
+      "explanation": string,         // one crisp paragraph; keep brief
+      "evidence": [string],          // short quotes that support the verdict
+      "anchors": [
+        {"section": string, "before_excerpt": string, "after_excerpt": string}
+      ]
+    },
+    // repeat per acceptance_criteria.criteria
+  },
+  "unmet_criteria": ["<criterion_id>", ...],
+  "overall_score": number,            // weighted by acceptance_criteria.weights if provided
+  "overall_satisfied": boolean,       // true only if all acceptance_criteria.required_criteria pass AND overall_score >= acceptance_criteria.thresholds.overall_score_min (if provided)
+  "revision_suggestions": [
+    {
+      "reason": string,               // why change is needed
+      "target_section": string,       // heading, clause number, or best locator
+      "action": "add" | "delete" | "replace" | "edit",
+      "instruction": string,          // precise edit instruction
+      "text_to_insert": string | null,// RTF snippet if add/replace
+      "constraints": [string]         // e.g., maintain numbering, update cross-references
+    }
+  ],
+  "red_flags": [string]               // potential legal risks introduced by the candidate
+}
+
+Constraints:
+- Base pass/fail strictly on scenario_json and acceptance_criteria. Do not infer extra requirements.
+- Be conservative: if uncertain, mark the relevant criterion as failed with a clear explanation.
+- Keep explanations and evidence concise.
+
+Variables available:
+{\rtf1\ansi
+THIS AGREEMENT TOGETHER WITH THE INVESTOR BUSINESS TERMS ("TERMS"), RELATED ACCOUNT OPENING\par
+DOCUMENTS, THE HASHKEY EXCHANGE RULES, ELECTRONIC ACCESS AND TRADING ADDENDUM, AND ANY OTHER\par
+RELEVANT AGREEMENTS INTO WHICH THE CLIENT AND HBL HAVE ENTERED AND THE RULES CONTAIN IMPORTANT\par
+TERMS AND CONDITIONS THAT COLLECTIVELY CONSTITUTE THE ENTIRE AGREEMENT ON ALL ACCOUNTS MAINTAINED\par
+BETWEEN THE CLIENT AND HASH BLOCKCHAIN LIMITED("HBL").\par
+\par
+            PART 1: GENERAL TERMS\par
+\par
+            1. General\par
+\par
+            1.1. The Client agrees to be bound by this Agreement which provides for additional terms\par
+            applicable to the Brokerage Services provided by HBL. For the avoidance of doubt, all terms\par
+            and conditions in the Terms shall, where the context so allows, continue to apply to the\par
+            Brokerage Services as referenced in Clause 1.2 and Clause 4.1.\par
+\par
+            1.2. This Agreement shall be part of the Terms and, without prejudice to the generality of\par
+            the foregoing, where the context so allows, reference in the Terms to "these Terms",\par
+            howsoever expressed, shall be read and construed as reference to the Terms as\par
+            supplemented by this Agreement in accordance with Clause 1.1.\par
+\par
+            2. Definitions and Interpretation\par
+\par
+            2.1. Capitalised terms used that are not otherwise specifically defined herein shall have the same meaning given to such terms when used in the Terms.\par
+\par
+            2.2. In this Agreement the following words and expressions shall have the following meanings:\par
+\par
+"Acceptance" has the meaning given to the term in Clause 3.1.4.\par
+\par
+"Brokerage Services" means the Virtual Asset trading services that are provided by HBL to the Client separately from HBL's exchange platform subject to this Agreement and Brokerage Platform Rules.\par
+\par
+"Brokerage Transaction" means any transaction conducted between the Client and HBL as part of the Brokerage Services in accordance with the terms of this Agreement as referenced in Clause 3.1.5 and Clause 3.2.1.\par
+\par
+"Client Order" means a bid or an offer made by the Client to HBL in accordance with Clause 3.1.3 to purchase or sell a particular quantity of a specified Virtual Asset at a specified price.\par
+\par
+"Hong Kong" means the Hong Kong Special Administrative Region.\par
+\par
+            3. Brokerage Services\par
+\par
+            3.1. HBL may, in its sole discretion, provide Brokerage Services to the Client from time to time subject to the terms and conditions set forth in Clause 3.2 and Clause 4.1.\par
+\par
+            3.2. Following the receipt of a Quote, the Client may submit a Client Order via Agreed Channel to purchase or sell a particular quantity of a specified Virtual Asset at a specified price. HBL shall, at its sole discretion, accept or reject any Client Order, provided that any Acceptance shall create a binding Brokerage Transaction as defined in Clause 2.2 above.\par
+\par
+            4. Representations, Warranties and Undertakings\par
+\par
+            4.1. The Client represents, warrants and undertakes that:\par
+            (a) all information provided to HBL is accurate and complete as referenced in Clause 1.1;\par
+            (b) the Client will comply with all applicable laws and regulations as specified in Clause 6.2;\par
+            (c) each Client Brokerage Account is legally and beneficially solely owned by the Client at all times.\par
+\par
+            5. Liability and Indemnification\par
+\par
+            5.1. HBL's Limitation of Liability\par
+\par
+            HBL shall not be liable to the Client for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or business interruption, even if HBL has been advised of the possibility of such damages. HBL's total liability to the Client shall not exceed the amount of fees paid by the Client to HBL in the twelve months preceding the claim.\par
+\par
+            5.2. Client Indemnification\par
+\par
+            The Client shall indemnify, defend, and hold harmless HBL and its affiliates, officers, directors, employees, and agents from and against any and all claims, damages, losses, costs, and expenses (including reasonable legal fees) arising from or related to the Client's breach of this Agreement as referenced in Clause 4.1 or violation of applicable laws.\par
+\par
+            6. Governing Law and Dispute Resolution\par
+\par
+            6.1. Amendment\par
+\par
+            This Agreement may be amended by HBL from time to time upon written notice to the Client. Any such amendments shall be binding upon the Client as referenced in Clause 1.2.\par
+\par
+            6.2. Governing Law\par
+\par
+            This Agreement shall be governed by and construed in accordance with the laws of Hong Kong, without regard to its conflict of laws principles.\par
+\par
+            6.3. Dispute Resolution\par
+\par
+            Any disputes arising from this Agreement shall be resolved through binding arbitration under HKIAC Rules. The arbitration shall be conducted in Hong Kong in the English language, and the decision shall be final and binding as specified in Clause 6.2.\par
+\par
+            7. Miscellaneous\par
+\par
+            7.1. This Agreement constitutes the entire agreement between the parties with respect to the subject matter hereof and supersedes all prior negotiations, representations, and agreements as referenced in the preamble.\par
+\par
+            7.2. If any provision of this Agreement is held to be invalid or unenforceable, the remaining provisions shall continue in full force and effect.\par
+\par
+            IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.\par
+\par
+            HASH BLOCKCHAIN LIMITED\par
+\par
+            By: ____________________\par
+            Name: John Smith\par
+            Title: Director\par
+            Address: 26/F, Man Yee Building, 68 Des Voeux Road Central, Central, Hong Kong\par
+            Email: legal@hashkey.com\par
+\par
+            CLIENT:\par
+\par
+            By: ____________________\par
+            Name: [CLIENT NAME]\par
+            Registration Code: [REG CODE]\par
+            Address: [ADDRESS]\par
+            Email: [EMAIL]\par
+}
+
+{\rtf1\ansi
+THIS AGREEMENT TOGETHER WITH THE INVESTOR BUSINESS TERMS ("TERMS"), RELATED ACCOUNT OPENING\par
+DOCUMENTS, THE DIGITAL FINANCE CORP EXCHANGE RULES, ELECTRONIC ACCESS AND TRADING ADDENDUM, AND ANY OTHER\par
+RELEVANT AGREEMENTS INTO WHICH THE CLIENT AND DIGITAL FINANCE CORP HAVE ENTERED AND THE RULES CONTAIN IMPORTANT\par
+TERMS AND CONDITIONS THAT COLLECTIVELY CONSTITUTE THE ENTIRE AGREEMENT ON ALL ACCOUNTS MAINTAINED\par
+BETWEEN THE CLIENT AND DIGITAL FINANCE CORP (SINGAPORE COMPANY REGISTRATION NUMBER 202301234A), A COMPANY INCORPORATED\par
+UNDER THE LAWS OF SINGAPORE.\par
+\par
+            PART 1: GENERAL TERMS\par
+\par
+            1. General\par
+\par
+            1.1. The Client agrees to be bound by this Agreement which provides for additional terms\par
+            applicable to the Brokerage Services provided by Digital Finance Corp. For the avoidance of doubt, all terms\par
+            and conditions in the Terms shall, where the context so allows, continue to apply to the\par
+            Brokerage Services as referenced in Clause 1.2 and Clause 4.1.\par
+\par
+            1.2. This Agreement shall be part of the Terms and, without prejudice to the generality of\par
+            the foregoing, where the context so allows, reference in the Terms to "these Terms",\par
+            howsoever expressed, shall be read and construed as reference to the Terms as\par
+            supplemented by this Agreement in accordance with Clause 1.1.\par
+\par
+            2. Definitions and Interpretation\par
+\par
+            2.1. Capitalised terms used that are not otherwise specifically defined herein shall have the same meaning given to such terms when used in the Terms.\par
+\par
+            2.2. In this Agreement the following words and expressions shall have the following meanings:\par
+\par
+"Acceptance" has the meaning given to the term in Clause 3.1.4.\par
+\par
+"Brokerage Services" means the Virtual Asset trading services that are provided by Digital Finance Corp to the Client separately from Digital Finance Corp's exchange platform subject to this Agreement and Brokerage Platform Rules.\par
+\par
+"Brokerage Transaction" means any transaction conducted between the Client and Digital Finance Corp as part of the Brokerage Services in accordance with the terms of this Agreement as referenced in Clause 3.1.5 and Clause 3.2.1.\par
+\par
+"Client Order" means a bid or an offer made by the Client to Digital Finance Corp in accordance with Clause 3.1.3 to purchase or sell a particular quantity of a specified Virtual Asset at a specified price. Digital Finance Corp shall, at its sole discretion, accept or reject any Client Order, provided that any Acceptance shall create a binding Brokerage Transaction as defined in Clause 2.2 above.\par
+\par
+"Singapore" means the Republic of Singapore.\par
+\par
+            3. Brokerage Services\par
+\par
+            3.1. Digital Finance Corp may, in its sole discretion, provide Brokerage Services to the Client from time to time subject to the terms and conditions set forth in Clause 3.2 and Clause 4.1.\par
+\par
+            3.2. Following the receipt of a Quote, the Client may submit a Client Order via Agreed Channel to purchase or sell a particular quantity of a specified Virtual Asset at a specified price. Digital Finance Corp shall, at its sole discretion, accept or reject any Client Order, provided that any Acceptance shall create a binding Brokerage Transaction as defined in Clause 2.2 above.\par
+\par
+            4. Representations, Warranties and Undertakings\par
+\par
+            4.1. The Client represents, warrants and undertakes that:\par
+            (a) all information provided to Digital Finance Corp is accurate and complete as referenced in Clause 1.1;\par
+            (b) the Client will comply with all applicable laws and regulations as specified in Clause 6.2;\par
+            (c) each Client Brokerage Account is legally and beneficially solely owned by the Client at all times.\par
+\par
+            5. Liability and Indemnification\par
+\par
+            5.1. Digital Finance Corp's Limitation of Liability\par
+\par
+            Digital Finance Corp shall not be liable to the Client for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or business interruption, even if Digital Finance Corp has been advised of the possibility of such damages. The Client's total liability to Digital Finance Corp shall not exceed the amount of fees paid by the Client to Digital Finance Corp in the twelve months preceding the claim.\par
+\par
+            5.2. Client Indemnification\par
+\par
+            The Client shall indemnify, defend, and hold harmless Digital Finance Corp and its affiliates, officers, directors, employees, and agents from and against any and all claims, damages, losses, costs, and expenses (including reasonable legal fees) arising from or related to the Client's breach of this Agreement as referenced in Clause 4.1 or violation of applicable laws.\par
+\par
+            6. Governing Law and Dispute Resolution\par
+\par
+            6.1. Amendment\par
+\par
+            This Agreement may be amended by Digital Finance Corp from time to time upon written notice to the Client. Any such amendments shall be binding upon the Client as referenced in Clause 1.2.\par
+\par
+            6.2. Governing Law\par
+\par
+            This Agreement shall be governed by and construed in accordance with the laws of Singapore, without regard to its conflict of laws principles.\par
+\par
+            6.3. Dispute Resolution\par
+\par
+            Any disputes arising from this Agreement shall be resolved through binding arbitration under SIAC Rules. The arbitration shall be conducted in Singapore in the English language, and the decision shall be final and binding as specified in Clause 6.2.\par
+\par
+            7. Miscellaneous\par
+\par
+            7.1. This Agreement constitutes the entire agreement between the parties with respect to the subject matter hereof and supersedes all prior negotiations, representations, and agreements as referenced in the preamble.\par
+\par
+            7.2. If any provision of this Agreement is held to be invalid or unenforceable, the remaining provisions shall continue in full force and effect.\par
+\par
+            IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.\par
+\par
+            DIGITAL FINANCE CORP\par
+\par
+            By: ____________________\par
+            Name: Sarah Tan\par
+            Title: Managing Director\par
+            Address: 1 Raffles Place, #40-02, One Raffles Place, Singapore 048616\par
+{
+  "scenario_name": "Comprehensive Semantic Manipulation Test",
+  "scenario_description": "Advanced test covering counterparty change, legal domicile shift, liability reallocation, and clause operations",
+  "legal_engineering_challenges": {
+    "1_entity_substitution_cascade": {
+      "find_replace_all": "Hash Blockchain Limited",
+      "replace_with": "Digital Finance Corp",
+      "include_variations": [
+        "HBL",
+        "Hash Blockchain",
+        "the Company"
+      ],
+      "requirements": [
+        "Replace all entity name variations throughout document",
+        "Update signature blocks and contact information",
+        "Maintain grammatical consistency (e.g., 'HBL's' becomes 'Digital Finance Corp's')"
+      ]
+    },
+    "2_jurisdictional_transformation": {
+      "from_jurisdiction": "Hong Kong",
+      "to_jurisdiction": "Singapore",
+      "update_requirements": [
+        "Change governing law from Hong Kong to Singapore",
+        "Update dispute resolution from HKIAC to SIAC (Singapore International Arbitration Centre)",
+        "Change arbitration venue from Hong Kong to Singapore",
+        "Update all Hong Kong references to Singapore"
+      ]
+    },
+    "3_governing_law_transformation": {
+      "from_governing_law": "laws of Hong Kong",
+      "to_governing_law": "laws of Singapore",
+      "venue_changes": {
+        "from_venue": "Hong Kong",
+        "to_venue": "Singapore"
+      }
+    },
+    "4_definition_dependency_management": {
+      "update_core_definitions": {
+        "HBL": "Digital Finance Corp (Singapore company registration number 202301234A), a company incorporated under the laws of Singapore"
+      },
+      "add_new_definitions": {
+        "Singapore Regulations": "means the regulations issued by the Monetary Authority of Singapore from time to time"
+      }
+    },
+    "5_liability_reallocation": {
+      "shift_liability_from_to": [
+        {
+          "from_party": "HBL",
+          "to_party": "Client",
+          "liability_type": "indemnification",
+          "description": "Reverse indemnification - Client now indemnifies Digital Finance Corp instead of vice versa",
+          "new_clause_text": "Digital Finance Corp shall indemnify, defend, and hold harmless the Client and its affiliates from and against any and all claims, damages, losses, costs, and expenses arising from Digital Finance Corp's breach of this Agreement or violation of applicable laws."
+        },
+        {
+          "from_party": "Client",
+          "to_party": "HBL",
+          "liability_type": "limitation",
+          "description": "Remove Client's liability limitations and impose on Digital Finance Corp",
+          "new_clause_text": "The Client's total liability to Digital Finance Corp shall not exceed the amount of fees paid by Digital Finance Corp to the Client in the twelve months preceding the claim."
+        }
+      ]
+    },
+    "6_clause_modifications": {
+      "add_clauses": [
+        {
+          "clause_id": "data_protection",
+          "title": "7.3 Data Protection",
+          "required_text": "Digital Finance Corp shall comply with all applicable data protection laws in Singapore, including the Personal Data Protection Act 2012. All personal data collected shall be processed in accordance with Singapore privacy regulations.",
+          "position": "after_clause_7.2"
+        },
+        {
+          "clause_id": "regulatory_compliance",
+          "title": "7.4 Regulatory Compliance",
+          "required_text": "Digital Finance Corp acknowledges that it is subject to the supervision of the Monetary Authority of Singapore and shall maintain all required licenses and registrations under Singapore law.",
+          "position": "after_clause_7.3"
+        }
+      ],
+      "delete_clauses": [
+        {
+          "clause_id": "client_indemnification",
+          "text_to_remove": "The Client shall indemnify, defend, and hold harmless HBL and its affiliates, officers, directors, employees, and agents from and against any and all claims, damages, losses, costs, and expenses (including reasonable legal fees) arising from or related to the Client's breach of this Agreement as referenced in Clause 4.1 or violation of applicable laws."
+        }
+      ],
+      "modify_clauses": [
+        {
+          "clause_id": "hbl_limitation",
+          "old_text": "HBL shall not be liable to the Client for any indirect, incidental, special, consequential, or punitive damages",
+          "new_text": "The Client shall not be liable to Digital Finance Corp for any indirect, incidental, special, consequential, or punitive damages",
+          "rationale": "Reverse liability limitation from company to client"
+        }
+      ]
+    },
+    "7_party_role_changes": {
+      "transform_roles": [
+        {
+          "party": "HBL",
+          "from_role": "service_provider",
+          "to_role": "service_recipient",
+          "description": "Digital Finance Corp becomes the party receiving services rather than providing them"
+        }
+      ]
+    },
+    "8_address_and_contact_updates": {
+      "update_company_details": {
+        "new_address": "1 Raffles Place, #40-02, One Raffles Place, Singapore 048616",
+        "new_email": "legal@digitalfinance.sg",
+        "new_director": "Sarah Tan",
+        "new_title": "Managing Director"
+      }
+    }
+  },
+  "ambiguous_instructions": {
+    "counterparty_transformation": {
+      "description": "Transform the counterparty while maintaining legal validity",
+      "registration_details": {
+        "primary_registration": "202301234A",
+        "jurisdiction": "Singapore",
+        "regulatory_body": "Monetary Authority of Singapore"
+      }
+    }
+  },
+  "acceptance_criteria": {
+    "thresholds": {
+      "overall_score_min": 0.85
+    },
+    "required_criteria": [
+      "entity_substitution_complete",
+      "jurisdiction_transformed",
+      "liability_reallocation_correct",
+      "clause_operations_successful",
+      "legal_coherence_maintained"
+    ],
+    "criteria": {
+      "entity_substitution_complete": {
+        "weight": 0.25,
+        "description": "All entity references updated correctly"
+      },
+      "jurisdiction_transformed": {
+        "weight": 0.2,
+        "description": "Governing law and venue properly changed to Singapore"
+      },
+      "liability_reallocation_correct": {
+        "weight": 0.2,
+        "description": "Liability clauses properly reversed between parties"
+      },
+      "clause_operations_successful": {
+        "weight": 0.2,
+        "description": "Clauses added, deleted, and modified as specified"
+      },
+      "legal_coherence_maintained": {
+        "weight": 0.15,
+        "description": "Document maintains legal consistency and enforceability"
+      }
+    }
+  }
+}
+{
+  "thresholds": {
+    "overall_score_min": 0.85
+  },
+  "required_criteria": [
+    "entity_substitution_complete",
+    "jurisdiction_transformed",
+    "liability_reallocation_correct",
+    "clause_operations_successful",
+    "legal_coherence_maintained"
+  ],
+  "criteria": {
+    "entity_substitution_complete": {
+      "weight": 0.25,
+      "description": "All entity references updated correctly"
+    },
+    "jurisdiction_transformed": {
+      "weight": 0.2,
+      "description": "Governing law and venue properly changed to Singapore"
+    },
+    "liability_reallocation_correct": {
+      "weight": 0.2,
+      "description": "Liability clauses properly reversed between parties"
+    },
+    "clause_operations_successful": {
+      "weight": 0.2,
+      "description": "Clauses added, deleted, and modified as specified"
+    },
+    "legal_coherence_maintained": {
+      "weight": 0.15,
+      "description": "Document maintains legal consistency and enforceability"
+    }
+  }
+}
+{}

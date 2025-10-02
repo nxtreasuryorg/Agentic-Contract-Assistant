@@ -1,0 +1,90 @@
+{
+  "instruction_followed": true,
+  "criteria": {
+    "entity_substitution_complete": {
+      "pass": true,
+      "score": 1.0,
+      "explanation": "All instances of 'Hash Blockchain Limited' and its variations have been correctly replaced with 'Digital Finance Corp'. Signature blocks and contact information have been updated accordingly.",
+      "evidence": [
+        "DIGITAL FINANCE CORP",
+        "By: ____________________\nName: Sarah Tan\nTitle: Managing Director\nAddress: 1 Raffles Place, #40-02, One Raffles Place, Singapore 048616\nEmail: legal@digitalfinance.sg"
+      ],
+      "anchors": [
+        {
+          "section": "PART 1: GENERAL TERMS",
+          "before_excerpt": "HBL",
+          "after_excerpt": "DFC"
+        }
+      ]
+    },
+    "jurisdiction_transformed": {
+      "pass": true,
+      "score": 1.0,
+      "explanation": "Governing law has been changed from Hong Kong to Singapore, and dispute resolution from HKIAC to SIAC. All references to Hong Kong have been updated to Singapore.",
+      "evidence": [
+        "This Agreement shall be governed by and construed in accordance with the laws of Singapore",
+        "Any disputes arising from this Agreement shall be resolved through binding arbitration under SIAC Rules"
+      ],
+      "anchors": [
+        {
+          "section": "6. Governing Law and Dispute Resolution",
+          "before_excerpt": "Hong Kong",
+          "after_excerpt": "Singapore"
+        }
+      ]
+    },
+    "liability_reallocation_correct": {
+      "pass": true,
+      "score": 1.0,
+      "explanation": "Liability clauses have been properly reversed. Digital Finance Corp now indemnifies the Client, and the limitation of liability has been shifted to Digital Finance Corp.",
+      "evidence": [
+        "Digital Finance Corp shall indemnify, defend, and hold harmless the Client",
+        "The Client's total liability to Digital Finance Corp shall not exceed the amount of fees paid by Digital Finance Corp to the Client"
+      ],
+      "anchors": [
+        {
+          "section": "5. Liability and Indemnification",
+          "before_excerpt": "HBL shall not be liable",
+          "after_excerpt": "The Client shall not be liable"
+        }
+      ]
+    },
+    "clause_operations_successful": {
+      "pass": true,
+      "score": 1.0,
+      "explanation": "Clauses have been added, deleted, and modified as specified. New clauses on Data Protection and Regulatory Compliance have been included, and the Client indemnification clause has been removed.",
+      "evidence": [
+        "Digital Finance Corp shall comply with all applicable data protection laws in Singapore",
+        "Digital Finance Corp acknowledges that it is subject to the supervision of the Monetary Authority of Singapore"
+      ],
+      "anchors": [
+        {
+          "section": "7. Miscellaneous",
+          "before_excerpt": "The Client shall indemnify, defend, and hold harmless HBL",
+          "after_excerpt": "Digital Finance Corp shall indemnify, defend, and hold harmless the Client"
+        }
+      ]
+    },
+    "legal_coherence_maintained": {
+      "pass": true,
+      "score": 1.0,
+      "explanation": "The document maintains legal consistency and enforceability. The logical flow and conditional structures remain intact.",
+      "evidence": [
+        "This Agreement constitutes the entire agreement between the parties",
+        "If any provision of this Agreement is held to be invalid or unenforceable, the remaining provisions shall continue in full force and effect"
+      ],
+      "anchors": [
+        {
+          "section": "7. Miscellaneous",
+          "before_excerpt": "",
+          "after_excerpt": ""
+        }
+      ]
+    }
+  },
+  "unmet_criteria": [],
+  "overall_score": 1.0,
+  "overall_satisfied": true,
+  "revision_suggestions": [],
+  "red_flags": []
+}

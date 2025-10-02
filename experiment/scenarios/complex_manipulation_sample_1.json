@@ -1,0 +1,128 @@
+{
+  "id": "complex-manipulation-sample-1-expert-level",
+  "document": "sample_1",
+  "description": "Expert-level contract manipulation: Complex cross-reference updates, conditional clause modifications, nested definition changes, and sophisticated blame shift patterns. Tests advanced legal reasoning.",
+  
+  "counterparty_update": {
+    "name": "Quantum Financial Holdings Pte Ltd.",
+    "registration_code": "202300567E",
+    "vat": "M90374567F",
+    "address": "1 Raffles Place, #40-61, One Raffles Place, Singapore 048616",
+    "email": "legal.contracts@quantumfh.com.sg",
+    "additional_requirements": {
+      "update_all_cross_references": true,
+      "update_defined_terms": ["HBL", "Company", "Service Provider"],
+      "maintain_capitalization_consistency": true
+    }
+  },
+  
+  "domicile_shift": {
+    "governing_law": "Singapore",
+    "venue": "Singapore",
+    "arbitration_body": "SIAC",
+    "arbitration_rules": "SIAC Rules 2016",
+    "complex_requirements": {
+      "update_all_jurisdiction_references": true,
+      "modify_service_of_process_clauses": true,
+      "adjust_currency_denomination": "SGD",
+      "update_regulatory_compliance_references": ["MAS", "Singapore Financial Services"]
+    }
+  },
+  
+  "blame_shift": {
+    "from_party": "HBL",
+    "to_party": "Client", 
+    "sophisticated_patterns": {
+      "liability_caps": "remove_all_hbl_caps_add_client_caps",
+      "indemnification": "reverse_direction_full_scope",
+      "force_majeure": "exclude_hbl_include_client",
+      "breach_consequences": "amplify_client_penalties",
+      "insurance_requirements": "transfer_to_client_with_hbl_as_beneficiary"
+    },
+    "preserve_legal_validity": true
+  },
+  
+  "clause_add": [
+    {
+      "tag": "AdvancedDataProtection",
+      "insert_after_section": "2. Definitions and Interpretation",
+      "rtf_text": "{\\rtf1\\ansi\\b 2.3. Data Protection and Privacy Compliance.\\b0\\par (a) The Client shall implement and maintain comprehensive data protection measures in accordance with the Personal Data Protection Act 2012 (Singapore), General Data Protection Regulation (EU) 2016/679, and any other applicable privacy laws.\\par (b) The Client shall indemnify and hold harmless HBL against any and all claims, damages, losses, costs, and expenses (including legal fees) arising from the Client's breach of data protection obligations.\\par (c) The Client warrants that all personal data processing activities comply with applicable law and that all necessary consents have been obtained.}",
+      "complex_requirements": {
+        "update_numbering_cascade": true,
+        "add_cross_references": ["Clause 4.1", "Clause 6.2"],
+        "update_definition_section": "add 'Personal Data' definition"
+      }
+    },
+    {
+      "tag": "RegulatoryComplianceMatrix", 
+      "insert_after_section": "3. Brokerage Services",
+      "rtf_text": "{\\rtf1\\ansi\\b 3.3. Enhanced Regulatory Compliance Matrix.\\b0\\par (a) The Client acknowledges and agrees to comply with all applicable regulatory requirements in multiple jurisdictions including but not limited to: (i) Monetary Authority of Singapore (MAS) regulations; (ii) Securities and Exchange Commission (SEC) rules; (iii) Financial Conduct Authority (FCA) requirements; and (iv) any other relevant financial services regulations.\\par (b) The Client shall maintain appropriate licenses, registrations, and authorizations required for its activities and shall promptly notify HBL of any regulatory actions, investigations, or changes in regulatory status.\\par (c) Failure to maintain regulatory compliance shall constitute a material breach of this Agreement, entitling HBL to immediate termination and recovery of all costs and damages.}",
+      "complex_requirements": {
+        "conditional_application": "only_if_client_is_institutional",
+        "cross_reference_updates": ["Schedule A", "Appendix B"],
+        "definition_additions": ["Regulatory Authority", "Material Breach"]
+      }
+    }
+  ],
+  
+  "clause_delete": [
+    { 
+      "section": "5.2. HBL's Limitation of Liability", 
+      "reason": "Remove HBL liability protections to shift risk to Client",
+      "complex_requirements": {
+        "cascade_renumber": true,
+        "update_all_internal_references": true,
+        "remove_related_definitions": ["Consequential Damages", "Liability Cap"]
+      }
+    },
+    {
+      "section": "8.1. Termination for Convenience by HBL",
+      "reason": "Remove HBL's unilateral termination rights",
+      "complex_requirements": {
+        "preserve_client_termination_rights": true,
+        "update_notice_periods": "extend_to_90_days",
+        "modify_survival_clauses": true
+      }
+    }
+  ],
+  
+  "advanced_manipulations": {
+    "definition_cascading": {
+      "change_core_definition": "HBL",
+      "new_definition": "Quantum Financial Holdings Pte Ltd.",
+      "update_all_instances": true,
+      "maintain_grammatical_consistency": true
+    },
+    "cross_reference_integrity": {
+      "verify_all_clause_references": true,
+      "update_numbering_dependencies": true,
+      "maintain_legal_citation_format": true
+    },
+    "conditional_logic_preservation": {
+      "maintain_if_then_structures": true,
+      "preserve_exception_hierarchies": true,
+      "update_dependent_calculations": true
+    }
+  },
+  
+  "acceptance_criteria": {
+    "thresholds": { "overall_score_min": 0.90 },
+    "required_criteria": [
+      "instruction_followed", 
+      "blame_shift_applied", 
+      "cross_reference_integrity",
+      "definition_consistency",
+      "legal_structure_preserved"
+    ],
+    "criteria": {
+      "instruction_followed": {"weight": 0.20},
+      "numbering_and_refs_consistent": {"weight": 0.15},
+      "governing_law_and_venue_consistent": {"weight": 0.10},
+      "liability_and_indemnity_consistent": {"weight": 0.15},
+      "blame_shift_applied": {"weight": 0.15},
+      "cross_reference_integrity": {"weight": 0.10},
+      "definition_consistency": {"weight": 0.10},
+      "legal_structure_preserved": {"weight": 0.05}
+    }
+  }
+}

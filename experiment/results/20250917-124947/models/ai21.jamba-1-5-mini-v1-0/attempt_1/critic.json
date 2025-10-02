@@ -1,0 +1,91 @@
+{
+  "instruction_followed": true,
+  "criteria": {
+    "entity_substitution_complete": {
+      "pass": true,
+      "score": 1.0,
+      "explanation": "All instances of 'HBL' and its variations have been correctly replaced with 'Digital Finance Corp'. Signature blocks and contact information have been updated accordingly.",
+      "evidence": [
+        "Digital Finance Corp may, in its sole discretion, provide Brokerage Services",
+        "Digital Finance Corp shall not be liable to the Client",
+        "By: ____________________\nName: Sarah Tan\nTitle: Managing Director\nAddress: 1 Raffles Place, #40-02, One Raffles Place, Singapore 048616\nEmail: legal@digitalfinance.sg"
+      ],
+      "anchors": [
+        {
+          "section": "PART 1: GENERAL TERMS",
+          "before_excerpt": "HBL may, in its sole discretion, provide Brokerage Services",
+          "after_excerpt": "Digital Finance Corp may, in its sole discretion, provide Brokerage Services"
+        }
+      ]
+    },
+    "jurisdiction_transformed": {
+      "pass": true,
+      "score": 1.0,
+      "explanation": "Governing law has been changed from Hong Kong to Singapore, and dispute resolution has been updated from HKIAC to SIAC. All references to Hong Kong have been updated to Singapore.",
+      "evidence": [
+        "This Agreement shall be governed by and construed in accordance with the laws of Singapore",
+        "Any disputes arising from this Agreement shall be resolved through binding arbitration under SIAC Rules"
+      ],
+      "anchors": [
+        {
+          "section": "6. Governing Law and Dispute Resolution",
+          "before_excerpt": "This Agreement shall be governed by and construed in accordance with the laws of Hong Kong",
+          "after_excerpt": "This Agreement shall be governed by and construed in accordance with the laws of Singapore"
+        }
+      ]
+    },
+    "liability_reallocation_correct": {
+      "pass": true,
+      "score": 1.0,
+      "explanation": "Liability clauses have been properly reversed. Digital Finance Corp now indemnifies the Client, and the limitation of liability has been shifted accordingly.",
+      "evidence": [
+        "Digital Finance Corp shall indemnify, defend, and hold harmless the Client",
+        "The Client shall not be liable to Digital Finance Corp for any indirect, incidental, special, consequential, or punitive damages"
+      ],
+      "anchors": [
+        {
+          "section": "5. Liability and Indemnification",
+          "before_excerpt": "HBL shall not be liable to the Client for any indirect, incidental, special, consequential, or punitive damages",
+          "after_excerpt": "The Client shall not be liable to Digital Finance Corp for any indirect, incidental, special, consequential, or punitive damages"
+        }
+      ]
+    },
+    "clause_operations_successful": {
+      "pass": true,
+      "score": 1.0,
+      "explanation": "Clauses have been added, deleted, and modified as specified. New clauses on data protection and regulatory compliance have been added, and the client indemnification clause has been removed.",
+      "evidence": [
+        "Digital Finance Corp shall comply with all applicable data protection laws in Singapore",
+        "Digital Finance Corp acknowledges that it is subject to the supervision of the Monetary Authority of Singapore"
+      ],
+      "anchors": [
+        {
+          "section": "7. Miscellaneous",
+          "before_excerpt": "The Client shall indemnify, defend, and hold harmless HBL",
+          "after_excerpt": "Digital Finance Corp shall comply with all applicable data protection laws in Singapore"
+        }
+      ]
+    },
+    "legal_coherence_maintained": {
+      "pass": true,
+      "score": 1.0,
+      "explanation": "The document maintains legal consistency and enforceability. All changes are logically coherent and do not introduce contradictions or ambiguities.",
+      "evidence": [
+        "This Agreement constitutes the entire agreement between the parties",
+        "If any provision of this Agreement is held to be invalid or unenforceable, the remaining provisions shall continue in full force and effect"
+      ],
+      "anchors": [
+        {
+          "section": "7. Miscellaneous",
+          "before_excerpt": "This Agreement constitutes the entire agreement between the parties",
+          "after_excerpt": "This Agreement constitutes the entire agreement between the parties"
+        }
+      ]
+    }
+  },
+  "unmet_criteria": [],
+  "overall_score": 1.0,
+  "overall_satisfied": true,
+  "revision_suggestions": [],
+  "red_flags": []
+}
