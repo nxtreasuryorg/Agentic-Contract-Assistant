@@ -1,0 +1,93 @@
+graph LR
+    subgraph CLIENT["🌐 Client Layer"]
+        USER["👤 User/nxtApp Client"]
+    end
+
+    subgraph EB["☁️ AWS Elastic Beanstalk (us-east-1)"]
+        ALB["🔀 Application<br/>Load Balancer"]
+        
+        subgraph ENV["📦 contract-agent-env"]
+            EC2["🖥️ EC2 t3.medium<br/>Amazon Linux 2023"]
+            
+            subgraph APP["🐍 Python 3.11 Container"]
+                NGINX["Nginx<br/>:80→:5000"]
+                WSGI["Gunicorn<br/>WSGI"]
+                FLASK["Flask API<br/>application.py"]
+            end
+        end
+        
+        CONFIG["⚙️ EB Config<br/>.ebextensions"]
+    end
+
+    subgraph CORE["🤖 Application Core"]
+        ROUTES["API Routes<br/>/health<br/>/process_contract<br/>/job_status<br/>/job_result"]
+        QUEUE["Job Queue<br/>Async"]
+        CREW["CrewAI<br/>Manager"]
+        ACTOR["Actor<br/>Agent"]
+        CRITIC["Critic<br/>Agent"]
+    end
+
+    subgraph AWS["🔧 AWS Services"]
+        BEDROCK["🧠 Bedrock"]
+        NOVA["Nova Pro<br/>v1:0"]
+        MISTRAL["Mistral<br/>Large"]
+        S3["📦 S3<br/>Versions"]
+        CW["📊 CloudWatch<br/>Monitoring"]
+        IAM["🔐 IAM Role<br/>ec2-role"]
+    end
+
+    subgraph STORAGE["💾 Data Storage"]
+        UP["📁 uploads/"]
+        GEN["📄 generated/"]
+        TMP["🗂️ temp/"]
+    end
+
+    %% Main Flow
+    USER -->|"1. HTTP Request"| ALB
+    ALB -->|"2. Forward"| NGINX
+    NGINX --> WSGI
+    WSGI --> FLASK
+    FLASK --> ROUTES
+    ROUTES -->|"3. Submit Job"| QUEUE
+    QUEUE -->|"4. Process"| CREW
+    
+    %% Processing
+    CREW -->|"5a. Modify"| ACTOR
+    ACTOR -->|"5b. Review"| CRITIC
+    CRITIC -->|"5c. Feedback"| CREW
+    
+    %% Storage
+    CREW --> UP
+    CREW --> GEN
+    CREW --> TMP
+    
+    %% AWS Services
+    ACTOR --> BEDROCK
+    CRITIC --> BEDROCK
+    BEDROCK --> NOVA
+    BEDROCK --> MISTRAL
+    
+    %% Infrastructure
+    CONFIG --> EC2
+    IAM --> FLASK
+    EC2 --> S3
+    EC2 --> CW
+    
+    %% Response
+    GEN -->|"6. Results"| FLASK
+    FLASK -->|"7. Response"| USER
+
+    %% Styling
+    classDef client fill:#e1f5ff,stroke:#01579b,stroke-width:3px
+    classDef infra fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef app fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    classDef ai fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef aws fill:#e3f2fd,stroke:#0d47a1,stroke-width:2px
+    classDef storage fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+
+    class USER client
+    class ALB,EC2,NGINX,WSGI,CONFIG infra
+    class FLASK,ROUTES,QUEUE app
+    class CREW,ACTOR,CRITIC ai
+    class BEDROCK,NOVA,MISTRAL,S3,CW,IAM aws
+    class UP,GEN,TMP storage

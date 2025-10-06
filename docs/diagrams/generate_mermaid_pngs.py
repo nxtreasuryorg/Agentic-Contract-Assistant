@@ -181,7 +181,8 @@ def main():
         ("04_class_diagram.mmd", "Class Diagram"),
         ("05_data_flow.mmd", "Data Flow Diagram"),
         ("06_state_machine.mmd", "Job State Machine"),
-        ("07_feedback_loop.mmd", "Actor-Critic Feedback Loop")
+        ("07_feedback_loop.mmd", "Actor-Critic Feedback Loop"),
+        ("08_elastic_beanstalk_deployment.mmd", "Elastic Beanstalk Deployment")
     ]
     
     # Check if Mermaid CLI is available
